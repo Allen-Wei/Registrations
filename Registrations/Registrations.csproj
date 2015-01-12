@@ -190,7 +190,24 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Vendors\angular-animate.min.js" />
+    <Content Include="Vendors\angular-cookies.min.js" />
+    <Content Include="Vendors\angular-loader.min.js" />
+    <Content Include="Vendors\angular-messages.min.js" />
+    <Content Include="Vendors\angular-mocks.js" />
+    <Content Include="Vendors\angular-resource.min.js" />
+    <Content Include="Vendors\angular-route.min.js" />
+    <Content Include="Vendors\angular-sanitize.min.js" />
+    <Content Include="Vendors\angular-scenario.js" />
+    <Content Include="Vendors\angular-touch.min.js" />
+    <Content Include="Vendors\angular.min.js" />
+    <Content Include="Vendors\bootstrap.min.js" />
+    <Content Include="Vendors\jquery-2.1.3.min.js" />
+    <Content Include="Vendors\npm.js" />
+    <Content Include="Styles\bootstrap-theme.min.css" />
+    <Content Include="Styles\bootstrap.min.css" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -215,6 +232,11 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Education\New.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

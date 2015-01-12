@@ -37,7 +37,8 @@ namespace Registrations.Models
     partial void UpdateRegistration(Registration instance);
     partial void DeleteRegistration(Registration instance);
     #endregion
-    public RegistrationModel() :
+
+	  public RegistrationModel() :
             base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString, mappingSource)
         {
             OnCreated();
@@ -228,7 +229,7 @@ namespace Registrations.Models
 		
 		private System.DateTime _RegistrateDate;
 		
-		private string _Name;
+		private string _StudentName;
 		
 		private bool _Gender;
 		
@@ -236,7 +237,7 @@ namespace Registrations.Models
 		
 		private decimal _Price;
 		
-		private string _CourseClass;
+		private string _CourseType;
 		
 		private string _RegistrationAddress;
 		
@@ -245,6 +246,10 @@ namespace Registrations.Models
 		private string _Payee;
 		
 		private string _CurrentGrade;
+		
+		private string _CurrentCollege;
+		
+		private string _RegistrateCollege;
 		
 		private string _EducationDegree;
 		
@@ -258,16 +263,16 @@ namespace Registrations.Models
     partial void OnIdChanged();
     partial void OnRegistrateDateChanging(System.DateTime value);
     partial void OnRegistrateDateChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
+    partial void OnStudentNameChanging(string value);
+    partial void OnStudentNameChanged();
     partial void OnGenderChanging(bool value);
     partial void OnGenderChanged();
     partial void OnPhoneChanging(string value);
     partial void OnPhoneChanged();
     partial void OnPriceChanging(decimal value);
     partial void OnPriceChanged();
-    partial void OnCourseClassChanging(string value);
-    partial void OnCourseClassChanged();
+    partial void OnCourseTypeChanging(string value);
+    partial void OnCourseTypeChanged();
     partial void OnRegistrationAddressChanging(string value);
     partial void OnRegistrationAddressChanged();
     partial void OnHomeAddressChanging(string value);
@@ -276,6 +281,10 @@ namespace Registrations.Models
     partial void OnPayeeChanged();
     partial void OnCurrentGradeChanging(string value);
     partial void OnCurrentGradeChanged();
+    partial void OnCurrentCollegeChanging(string value);
+    partial void OnCurrentCollegeChanged();
+    partial void OnRegistrateCollegeChanging(string value);
+    partial void OnRegistrateCollegeChanged();
     partial void OnEducationDegreeChanging(string value);
     partial void OnEducationDegreeChanged();
     partial void OnNoteChanging(string value);
@@ -327,22 +336,22 @@ namespace Registrations.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
-		public string Name
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StudentName", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
+		public string StudentName
 		{
 			get
 			{
-				return this._Name;
+				return this._StudentName;
 			}
 			set
 			{
-				if ((this._Name != value))
+				if ((this._StudentName != value))
 				{
-					this.OnNameChanging(value);
+					this.OnStudentNameChanging(value);
 					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
+					this._StudentName = value;
+					this.SendPropertyChanged("StudentName");
+					this.OnStudentNameChanged();
 				}
 			}
 		}
@@ -407,22 +416,22 @@ namespace Registrations.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CourseClass", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
-		public string CourseClass
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CourseType", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
+		public string CourseType
 		{
 			get
 			{
-				return this._CourseClass;
+				return this._CourseType;
 			}
 			set
 			{
-				if ((this._CourseClass != value))
+				if ((this._CourseType != value))
 				{
-					this.OnCourseClassChanging(value);
+					this.OnCourseTypeChanging(value);
 					this.SendPropertyChanging();
-					this._CourseClass = value;
-					this.SendPropertyChanged("CourseClass");
-					this.OnCourseClassChanged();
+					this._CourseType = value;
+					this.SendPropertyChanged("CourseType");
+					this.OnCourseTypeChanged();
 				}
 			}
 		}
@@ -467,7 +476,7 @@ namespace Registrations.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Payee", DbType="VarChar(500)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Payee", DbType="VarChar(500) NOT NULL", CanBeNull=false)]
 		public string Payee
 		{
 			get
@@ -503,6 +512,46 @@ namespace Registrations.Models
 					this._CurrentGrade = value;
 					this.SendPropertyChanged("CurrentGrade");
 					this.OnCurrentGradeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrentCollege", DbType="VarChar(500)")]
+		public string CurrentCollege
+		{
+			get
+			{
+				return this._CurrentCollege;
+			}
+			set
+			{
+				if ((this._CurrentCollege != value))
+				{
+					this.OnCurrentCollegeChanging(value);
+					this.SendPropertyChanging();
+					this._CurrentCollege = value;
+					this.SendPropertyChanged("CurrentCollege");
+					this.OnCurrentCollegeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegistrateCollege", DbType="VarChar(500)")]
+		public string RegistrateCollege
+		{
+			get
+			{
+				return this._RegistrateCollege;
+			}
+			set
+			{
+				if ((this._RegistrateCollege != value))
+				{
+					this.OnRegistrateCollegeChanging(value);
+					this.SendPropertyChanging();
+					this._RegistrateCollege = value;
+					this.SendPropertyChanged("RegistrateCollege");
+					this.OnRegistrateCollegeChanged();
 				}
 			}
 		}

@@ -3,4 +3,26 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>New</h2>
+<div ng-app="Registration">
+    <h2>Registrate</h2>
+    <div class="row" ng-controller="NewCtrl">
+        <form role="form">
+            <div class="form-group">
+                <label>日期</label>
+                <input type="text" value="" class="" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<script>
+    var app = angular.module('Registration', []);
+    app.factory('RegSvc', function() {
+        var service = {};
+        return service;
+    });
+    app.controller('NewCtrl', function($scope, $http) {
+        
+    });
+</script>

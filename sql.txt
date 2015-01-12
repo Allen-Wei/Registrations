@@ -1,4 +1,4 @@
-  public RegistrationModel() :
+﻿  public RegistrationModel() :
             base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString, mappingSource)
         {
             OnCreated();
@@ -7,26 +7,32 @@ sqlmetal /code:E:\LINQ2SQL\RegistrationModel.cs /server:ozosserver\ozos /user:sa
 
 
 
+drop table Colleges
+go
+drop table Registrations
+go
 create table Colleges(
-Id int identity(1,1),
-Gid uniqueidentifier primary key,
-Name varchar(500) not null,
-CanRegistrate bit
+Id int identity(1,1),				--记录Id
+Gid uniqueidentifier primary key,	--院校编号
+Name varchar(500) not null,			--院校名称		
+CanRegistrate bit					--此院校是否允许被报考
 )
 go
 create table Registrations
 (
-Id int identity(1,1) primary key,
-RegistrateDate datetime not null default getdate(),
-Name varchar(500) not null,
-Gender bit not null,
-Phone varchar(500),
-Price money not null,
-CourseClass varchar(500) not null,
-RegistrationAddress varchar(500) not null,
-HomeAddress varchar(500),
-Payee varchar(500),
-CurrentGrade varchar(500),
-EducationDegree varchar(500),
-Note varchar(max)
+Id int identity(1,1) primary key,						--记录Id
+RegistrateDate datetime not null default getdate(),		--报考日期
+StudentName varchar(500) not null,						--学员名字
+Gender bit not null,									--性别
+Phone varchar(500),										--电话号码
+Price money not null,									--费用
+CourseType varchar(500) not null,						--课程类别
+RegistrationAddress varchar(500) not null,				--报考地址
+HomeAddress varchar(500),								--学员住宿地址
+Payee varchar(500) not null,							--收款人
+CurrentGrade varchar(500),								--当前年级
+CurrentCollege varchar(500),							--当前院校
+RegistrateCollege varchar(500),							--报考院校
+EducationDegree varchar(500),							--学历
+Note varchar(max)										--备注
 )

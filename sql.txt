@@ -1,9 +1,9 @@
-  public Registration() :
-            base(global::System.Configuration.ConfigurationManager.ConnectionStrings["sqlconnection"].ConnectionString, mappingSource)
+  public RegistrationModel() :
+            base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString, mappingSource)
         {
             OnCreated();
         }
-sqlmetal /code:E:\LINQ2SQL\RegistrationModel.cs /server:ozosserver\ozos /user:sa /password:evoss /database:AlanTest /views /functions /sprocs /context:RegistrationModel /pluralize /namespace:Registration.Models
+sqlmetal /code:E:\LINQ2SQL\RegistrationModel.cs /server:ozosserver\ozos /user:sa /password:evoss /database:AlanTest /views /functions /sprocs /context:RegistrationModel /pluralize /namespace:Registrations.Models
 
 
 

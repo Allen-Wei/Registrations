@@ -9,7 +9,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Registration.Models
+namespace Registrations.Models
 {
 	using System.Data.Linq;
 	using System.Data.Linq.Mapping;
@@ -37,7 +37,7 @@ namespace Registration.Models
     partial void UpdateRegistration(Registration instance);
     partial void DeleteRegistration(Registration instance);
     #endregion
-	  public Registration() :
+    public RegistrationModel() :
             base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString, mappingSource)
         {
             OnCreated();

@@ -1,0 +1,23 @@
+create table Colleges(
+Id int identity(1,1),
+Gid uniqueidentifier primary key,
+Name varchar(500) not null,
+CanRegistrate bit
+)
+go
+create table Registrations
+(
+Id int identity(1,1) primary key,
+RegistrateDate datetime not null default getdate(),
+Name varchar(500) not null,
+Gender bit not null,
+Phone varchar(500),
+Price money not null,
+CourseClass varchar(500) not null,
+RegistrationAddress varchar(500) not null,
+HomeAddress varchar(500),
+Payee varchar(500),
+CurrentGrade varchar(500),
+EducationDegree varchar(500),
+Note varchar(max)
+)

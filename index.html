@@ -173,18 +173,16 @@
         , getDetail: function (id) {
           var defer = $q.defer();
           var promise = defer.promise;
-          console.log(id, LocalStoreSvc.getReg(id));
           defer.resolve({
             data: LocalStoreSvc.getReg(id)
           });
           return promise;
         }
         , update: function (reg) {
-          var promise = $http({
-            method: 'post',
-            url: '/APIv1/Registration',
-            data: reg
-          });
+          var defer = $q.defer();
+          var promise = defer.promise;
+          reg = LocalStoreSvc.updateReg(reg);
+          defer.resolve({data: reg});
           return promise;
         }
       };
@@ -232,7 +230,6 @@ app.controller('PrintCtrl', function ($scope, RegSvc, $routeParams) {
     reg:{}
   };
   RegSvc.getDetail($routeParams.id).then(function(rep) {
-    console.log(rep);
     $scope.main.reg = rep.data;
   });
 });

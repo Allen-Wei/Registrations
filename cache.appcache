@@ -3,6 +3,7 @@ CACHE MANIFEST
 CACHE:
 	http://allen-wei.github.io/aUtils/javascripts/scripts/aUtils.js
 	/Registrations
+	/Registrations/
 
 	/Registrations/fonts/fontawesome-webfont.eot
 	/Registrations/fonts/fontawesome-webfont.svg

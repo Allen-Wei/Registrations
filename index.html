@@ -75,14 +75,13 @@
       });
     });
 
-    app.factory('RegSvc', function ($http, AppConstant) {
+    app.factory('RegSvc', function ($http, $q, AppConstant) {
       var service = {
         loadColleges: function () {
-          var promise = $http({
-            method: 'get',
-            url: '/APIv1/College'
-          });
-          return promise;
+          var defer = $q.defer();
+          var data  = [{"Id":6,"Gid":"d1d6be8e-53cb-4210-8fb5-26e16017646a","Name":"电子技术学院","CanRegistrate":false},{"Id":1,"Gid":"0f8e6fb5-a165-4b10-aa23-369eaa4e4956","Name":"南开大学","CanRegistrate":true},{"Id":2,"Gid":"e223d368-f840-4c2d-a1e3-5d23556a5faa","Name":"天津大学","CanRegistrate":true},{"Id":3,"Gid":"812ac696-9694-4824-9e0e-6ba8c25c196a","Name":"外国语学院","CanRegistrate":true},{"Id":5,"Gid":"20dd19bb-241a-4319-adc4-cfd996376fcf","Name":"中德职业技术学院","CanRegistrate":false},{"Id":4,"Gid":"7810dcee-f059-4973-a8ff-efb49ad5bebe","Name":"财经大学","CanRegistrate":true}];
+          defer.resolve({data: data});
+          return defer.promise;
         }
         , add: function (reg) {
           var promise = $http({

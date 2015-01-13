@@ -34,6 +34,9 @@
         }).when('/new', {
             controller: 'FormCtrl',
             templateUrl: '/Partials/Education/form.html'
+        }).when('/print/:id', {
+            controller: 'PrintCtrl',
+            templateUrl: '/Partials/Education/print.html'
         }).otherwise({
             redirectTo: '/'
         });
@@ -73,6 +76,14 @@
                 });
                 return promise;
             }
+            , update: function (reg) {
+                var promise = $http({
+                    method: 'post',
+                    url: '/APIv1/Registration',
+                    data: reg
+                });
+                return promise;
+            }
         };
         return service;
     });
@@ -107,14 +118,19 @@
     });
     app.controller('DetailCtrl', function ($scope, $routeParams, RegSvc) {
         $scope.main = {
+            reg: {}
+        };
+        RegSvc.getDetail($routeParams.id).then(function (rep) {
+            $scope.main.reg = rep.data;
+        });
+    });
+    app.controller('PrintCtrl', function ($scope, RegSvc, $routeParams) {
+        $scope.main = {
             reg:{}
         };
         RegSvc.getDetail($routeParams.id).then(function(rep) {
             $scope.main.reg = rep.data;
         });
-    });
-    app.controller('EditCtrl', function($scope, RegSvc) {
-        
     });
     app.controller('FormCtrl', function ($scope, $http, $filter, AppConstant, RegSvc, $location, $routeParams) {
         $scope.main = {
@@ -140,31 +156,48 @@
                 all: []
             }
             , submit: function () {
-                RegSvc.add(this.reg).then(function() {
-                    $location.path('/');
-                });
+                if (this.mode == 'update') {
+                    RegSvc.update(this.reg).then(function() {
+                        $location.path('/');
+                    });
+                } else {
+                    RegSvc.add(this.reg).then(function (rep) {
+                        $location.path('/print/' + rep.data.Id);
+                    });
+
+                }
             }
         };
 
-        (function() {
+        (function () {
             if ($routeParams.id) {
                 $scope.main.mode = 'update';
             } else {
                 $scope.main.mode = 'add';
             }
+
+            if ($scope.main.mode == 'update') {
+                RegSvc.getDetail($routeParams.id).then(function (rep) {
+                    $scope.main.reg = rep.data;
+                    $scope.main.reg.RegistrateDate = $filter('date')(rep.data.RegistrateDate, AppConstant.ngDateFormat);
+                    $scope.main.reg.Gender = rep.data.Gender.toString();
+                });
+            }
+
+            //load all colleges
+            RegSvc.loadColleges().then(function (rep) {
+                angular.forEach(rep.data, function (college) {
+                    $scope.main.colleges.all.push(college.Name);
+                    if (college.CanRegistrate) {
+                        $scope.main.colleges.choices.push(college.Name);
+                    }
+                });
+                $scope.main.reg.CurrentCollege = $scope.main.colleges.all[0];
+                $scope.main.reg.RegistrateCollege = $scope.main.colleges.choices[0];
+            });
         })();
 
 
-        //load all colleges
-        RegSvc.loadColleges().then(function (rep) {
-            angular.forEach(rep.data, function (college) {
-                $scope.main.colleges.all.push(college.Name);
-                if (college.CanRegistrate) {
-                    $scope.main.colleges.choices.push(college.Name);
-                }
-            });
-            $scope.main.reg.CurrentCollege = $scope.main.colleges.all[0];
-            $scope.main.reg.RegistrateCollege = $scope.main.colleges.choices[0];
-        });
+
     });
 </script>

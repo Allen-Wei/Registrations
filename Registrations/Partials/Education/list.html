@@ -11,6 +11,7 @@
             <table class="table table-responsive table-striped">
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>报考日期</th>
                         <th>姓名</th>
                         <th>费用</th>
@@ -19,13 +20,15 @@
                 </thead>
                 <tbody>
                     <tr ng-repeat="reg in main.regs">
+                        <td>
+                            <a href="#/detail/{{reg.Id}}">{{reg.Id}}</a>
+                        </td>
                         <td>{{reg.RegistrateDate | date:constant.ngDateFormat}}</td>
                         <td>{{reg.StudentName}}</td>
                         <td>{{reg.Price | currency:'￥'}}</td>
                         <td>
-                            <a href="#/detail/{{reg.Id}}" class="btn btn-xs btn-default">
-                                <span class="glyphicon glyphicon-wrench"></span>
-                            </a>
+                            <a href="#/edit/{{reg.Id}}" class="btn btn-xs btn-default glyphicon glyphicon-pencil"></a>
+                            <a href="#/print/{{reg.Id}}" class="btn btn-xs btn-default glyphicon glyphicon-print"></a>
                         </td>
                     </tr>
                 </tbody>

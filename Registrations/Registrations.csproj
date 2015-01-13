@@ -195,7 +195,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Partials\Education\list.html" />
-    <Content Include="Partials\Education\new.html" />
+    <Content Include="Partials\Education\detail.html" />
+    <Content Include="Partials\Education\form.html" />
     <Content Include="Scripts\angular\directives.js" />
     <Content Include="Scripts\angular\filters.js" />
     <Content Include="Scripts\angular\services.js" />

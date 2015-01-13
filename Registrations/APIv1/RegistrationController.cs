@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web;
 using System.Web.Http;
+using System.Web.UI;
 using Registrations.Models;
 
 namespace Registrations.APIv1
@@ -31,6 +32,28 @@ namespace Registrations.APIv1
             model.Registrations.InsertOnSubmit(registration);
             model.SubmitChanges();
             return registration;
-        } 
+        }
+
+        public Registration Post(Registration registration)
+        {
+            var reg = model.Registrations.FirstOrDefault(r => r.Id == registration.Id);
+            if (reg == null) { return null; }
+            reg.RegistrateDate = registration.RegistrateDate;
+            reg.StudentName = registration.StudentName;
+            reg.Gender = registration.Gender;
+            reg.Phone = registration.Phone;
+            reg.Price = registration.Price;
+            reg.CourseType = registration.CourseType;
+            reg.RegistrationAddress = registration.RegistrationAddress;
+            reg.HomeAddress = registration.HomeAddress;
+            reg.Payee = registration.Payee;
+            reg.CurrentGrade = registration.CurrentGrade;
+            reg.CurrentCollege = registration.CurrentCollege;
+            reg.RegistrateCollege = registration.RegistrateCollege;
+            reg.EducationDegree = registration.EducationDegree;
+            reg.Note = registration.Note;
+            model.SubmitChanges();
+            return reg;
+        }
     }
 }

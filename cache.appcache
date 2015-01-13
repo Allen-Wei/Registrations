@@ -54,6 +54,4 @@ CACHE:
 	/Registrations/Vendors/angular.min.js
 	/Registrations/Vendors/bootstrap.min.js
 	/Registrations/Vendors/npm.js
-	http://allen-wei.github.io/aUtils/javascripts/scripts/aUtils.js
 	/Registrations
-	/Registrations/

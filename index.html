@@ -86,19 +86,19 @@
     app.factory('LocalStoreSvc', function(){
       var service = {
         getCount: function(){
-          var count = amplify.store('count') || 1;
+          var count = amplify.store('_count') || 1;
           amplify.store('_count', ++count);
           return count;
         }
         , getRegs : function(){
           return amplify.store('regs')||[];
         }
-        , getReg: function(){
+        , getReg: function(id){
           var regs = amplify.store('regs') || [];
           var got = undefined; 
           for(var i = 0, iLength = regs.length; i < iLength; i++){
             var item = regs[i]
-            if(item.Id == reg.Id){
+            if(item.Id == id){
               got = item;
               break;
             }
@@ -109,6 +109,7 @@
           reg.Id =  this.getCount();
           var regs = amplify.store('regs') || [];
           regs.push(reg);
+          amplify.store('regs', regs);
           return reg;
         }
         , updateReg: function(reg){
@@ -143,7 +144,7 @@
           var defer = $q.defer();
           var promise = defer.promise;
           reg = LocalStoreSvc.addReg(reg);
-          defer.resolve(reg);
+          defer.resolve({data: reg});
           return promise;
         }
         , loadRegList: function (page) {
@@ -172,6 +173,7 @@
         , getDetail: function (id) {
           var defer = $q.defer();
           var promise = defer.promise;
+          console.log(id, LocalStoreSvc.getReg(id));
           defer.resolve({
             data: LocalStoreSvc.getReg(id)
           });
@@ -230,6 +232,7 @@ app.controller('PrintCtrl', function ($scope, RegSvc, $routeParams) {
     reg:{}
   };
   RegSvc.getDetail($routeParams.id).then(function(rep) {
+    console.log(rep);
     $scope.main.reg = rep.data;
   });
 });

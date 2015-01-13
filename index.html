@@ -140,7 +140,7 @@
           return defer.promise;
         }
         , add: function (reg) {
-          var defer = $.defer();
+          var defer = $q.defer();
           var promise = defer.promise;
           reg = LocalStoreSvc.addReg(reg);
           defer.resolve(reg);

@@ -10,6 +10,7 @@
   <script src="Vendors/amplify.min.js"></script>
   <script src="Vendors/bootstrap.min.js"></script>
   <script src="Vendors/angular.min.js"></script>
+  <script type="text/javascript" src="http://allen-wei.github.io/aUtils/javascripts/scripts/aUtils.js"></script>
   <script src="Vendors/angular-animate.min.js"></script>
   <script src="Vendors/angular-loader.min.js"></script>
   <script src="Vendors/angular-route.min.js"></script>
@@ -38,13 +39,19 @@
   .new-form .col-xs-12 { margin-top: 10px; vertical-align: middle; }
   /*.new-form .col-xs-12:nth-child(odd){text-align: right;}*/
   </style>
+  <script type="text/javascript">
+  amplify.eDeepClone = function (obj) {
+    var id = aUtils.guid();
+    amplify.store(id, obj, { expires: 100 });
+    var cloned = amplify.store(id);
+    amplify.store(id, null);
+    return cloned;
+  };
+  </script>
 </head>
 <body>
   <header></header>
   <div id="body" class="container-fluid">
-
-
-
     <div ng-app="Registration">
       <div ng-controller="BodyCtrl">
         <div ng-view></div>
@@ -74,8 +81,41 @@
         redirectTo: '/'
       });
     });
-
-    app.factory('RegSvc', function ($http, $q, AppConstant) {
+    app.factory('LocalStoreSvc', function(){
+      var service = {
+        getCount: function(){
+          var count = amplify.store('count') || 1;
+          amplify.store('_count', ++count);
+          return count;
+        }
+        getRegs : function(){
+          return amplify.store('regs')||[];
+        },
+        , addReg:function(reg){
+          reg.Id =  this.getCount();
+          var regs = amplify.store('regs') || [];
+          regs.push(reg);
+          return reg;
+        }
+        , updateReg: function(reg){
+          var regs = amplify.store('regs') || [];
+          var updated = false;
+          for(var i = 0; iLength = regs.length; i < iLength; i++){
+            var item = regs[i]
+            if(item.Id == reg.Id){
+              $.extend(item, reg);
+              updated = true;
+              regs[i] = item;
+              amplify.store('regs', regs);
+              break;
+            }
+          }
+          return updated;
+        }
+      };
+      return service;
+    });
+    app.factory('RegSvc', function ($http, $q, AppConstant, LocalStoreSvc) {
       var service = {
         loadColleges: function () {
           var defer = $q.defer();
@@ -84,21 +124,33 @@
           return defer.promise;
         }
         , add: function (reg) {
-          var promise = $http({
-            method: 'put',
-            url: '/APIv1/Registration',
-            data: reg
-          });
+          var defer = $.defer();
+          var promise = defer.promise;
+          reg = LocalStoreSvc.addReg(reg);
+          defer.resolve(reg);
           return promise;
         }
         , loadRegList: function (page) {
           var take = AppConstant.perPage;
           var skip = (page - 1) * take;
-          var promise = $http({
-            method: 'get',
-            url: '/APIv1/Registration',
-            params: { take: take, skip: skip }
-          });
+          var regs = LocalStoreSvc.getRegs();
+          var total = regs.length;
+          var pages = Math.ceil(total/take);
+          var data = regs.splice(skip, take);
+
+          var headers = function(head){
+            var repHeader = {
+              'X-HeyHey-Pages': pages,
+              'X-HeyHey-Total': total
+            };
+            return repHeader[head];
+          };
+          var defer = $q.defer();
+          var promise = defer.promise;
+          defer.resolve({
+            data: data,
+            headers: headers
+          })
           return promise;
         }
         , getDetail: function (id) {

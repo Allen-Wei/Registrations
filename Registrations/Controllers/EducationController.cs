@@ -11,7 +11,7 @@ namespace Registrations.Controllers
         //
         // GET: /Education/
 
-        public ActionResult New()
+        public ActionResult Index()
         {
             return View();
         }

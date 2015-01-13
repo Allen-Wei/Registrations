@@ -29,7 +29,7 @@
             ngDateFormatDetail: 'yyyy-MM-dd h:mm:ss a',
             uiDateFormat: 'yy-mm-dd',
             perPageLittle: 10,
-            perPage: 10,
+            perPage: 5,
             perPageLarge: 50,
         });
 })();

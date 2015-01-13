@@ -1,0 +1,170 @@
+﻿@{
+    ViewBag.Title = "New";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <style type="text/css">
+        .new-form { }
+        .new-form .col-xs-12 { margin-top: 10px; vertical-align: middle; }
+        /*.new-form .col-xs-12:nth-child(odd){text-align: right;}*/
+    </style>
+}
+
+
+<div ng-app="Registration">
+    <div ng-controller="BodyCtrl">
+        <div ng-view></div>
+    </div>
+</div>
+
+
+<script>
+    var app = angular.module('Registration', ['ngRoute', 'registration.services', 'registration.directives', 'registration.filters']);
+    app.config(function ($routeProvider) {
+        $routeProvider.when('/', {
+            controller: 'ListCtrl',
+            templateUrl: '/Partials/Education/list.html'
+        }).when('/detail/:id', {
+            controller: 'DetailCtrl',
+            templateUrl: '/Partials/Education/detail.html'
+        }).when('/edit/:id', {
+            controller: 'FormCtrl',
+            templateUrl: '/Partials/Education/form.html'
+        }).when('/new', {
+            controller: 'FormCtrl',
+            templateUrl: '/Partials/Education/form.html'
+        }).otherwise({
+            redirectTo: '/'
+        });
+    });
+
+    app.factory('RegSvc', function ($http, AppConstant) {
+        var service = {
+            loadColleges: function () {
+                var promise = $http({
+                    method: 'get',
+                    url: '/APIv1/College'
+                });
+                return promise;
+            }
+            , add: function (reg) {
+                var promise = $http({
+                    method: 'put',
+                    url: '/APIv1/Registration',
+                    data: reg
+                });
+                return promise;
+            }
+            , loadRegList: function (page) {
+                var take = AppConstant.perPage;
+                var skip = (page - 1) * take;
+                var promise = $http({
+                    method: 'get',
+                    url: '/APIv1/Registration',
+                    params: { take: take, skip: skip }
+                });
+                return promise;
+            }
+            , getDetail: function (id) {
+                var promise = $http({
+                    method: 'get',
+                    url: '/APIv1/Registration/' + id
+                });
+                return promise;
+            }
+        };
+        return service;
+    });
+    app.controller('BodyCtrl', function ($scope, AppConstant) {
+        $scope.constant = AppConstant;
+    });
+    app.controller('ListCtrl', function ($scope, RegSvc) {
+
+        $scope.main = {
+            regs: [],
+            page: 1,
+            pages: 1,
+            total: 1,
+            load: function (p) {
+                RegSvc.loadRegList(p).then(function (rep) {
+                    $scope.main.regs = rep.data;
+                    $scope.main.pages = parseInt(rep.headers('X-HeyHey-Pages'));
+                    $scope.main.total = parseInt(rep.headers('X-HeyHey-Total'));
+                });
+            }
+        };
+
+        $scope.$watch('main.page', function (newVal, oldVal) {
+            if (newVal <= 0) {
+                throw 'Erro page number: ' + newVal;
+            }
+            if (newVal > $scope.main.pages) {
+                throw 'Out of max pages: ' + newVal;
+            }
+            $scope.main.load(newVal);
+        });
+    });
+    app.controller('DetailCtrl', function ($scope, $routeParams, RegSvc) {
+        $scope.main = {
+            reg:{}
+        };
+        RegSvc.getDetail($routeParams.id).then(function(rep) {
+            $scope.main.reg = rep.data;
+        });
+    });
+    app.controller('EditCtrl', function($scope, RegSvc) {
+        
+    });
+    app.controller('FormCtrl', function ($scope, $http, $filter, AppConstant, RegSvc, $location, $routeParams) {
+        $scope.main = {
+            mode: 'add',
+            reg: {
+                RegistrateDate: $filter('date')(new Date(), AppConstant.ngDateFormat),
+                StudentName: '',
+                Gender: 'true',
+                Phone: '',
+                Price: 0,
+                CourseType: '成考',
+                RegistrationAddress: '总部',
+                HomeAddress: '',
+                Payee: '',
+                CurrentGrade: '大一',
+                CurrentCollege: '',
+                RegistrateCollege: '',
+                EducationDegree: '专科',
+                Note: ''
+            }
+            , colleges: {
+                choices: [],
+                all: []
+            }
+            , submit: function () {
+                RegSvc.add(this.reg).then(function() {
+                    $location.path('/');
+                });
+            }
+        };
+
+        (function() {
+            if ($routeParams.id) {
+                $scope.main.mode = 'update';
+            } else {
+                $scope.main.mode = 'add';
+            }
+        })();
+
+
+        //load all colleges
+        RegSvc.loadColleges().then(function (rep) {
+            angular.forEach(rep.data, function (college) {
+                $scope.main.colleges.all.push(college.Name);
+                if (college.CanRegistrate) {
+                    $scope.main.colleges.choices.push(college.Name);
+                }
+            });
+            $scope.main.reg.CurrentCollege = $scope.main.colleges.all[0];
+            $scope.main.reg.RegistrateCollege = $scope.main.colleges.choices[0];
+        });
+    });
+</script>

@@ -1,6 +1,10 @@
-﻿<h2>Registrate</h2>
-
-<form class="new-form" role="form" name="NewForm" ng-controller="NewCtrl">
+﻿
+<div class="row top10 bottom10">
+    <div class="col-sm-12">
+        <a href="#/" class="btn btn-default glyphicon glyphicon-home"></a>
+    </div>
+</div>
+<form class="new-form" role="form" name="NewForm">
     <div class="row">
         <div class="col-md-6 col-sm-12">
 
@@ -46,9 +50,9 @@
                         <div class="col-sm-3 col-xs-12">地址</div>
                         <div class="col-sm-9 col-xs-12">
                             <select class="form-control" ng-model="main.reg.RegistrationAddress">
-                                <option value="zongbu">总部</option>
-                                <option value="jinnan">津南</option>
-                                <option value="hexi">河西</option>
+                                <option value="总部">总部</option>
+                                <option value="津南">津南</option>
+                                <option value="河西">河西</option>
                             </select>
                         </div>
 
@@ -59,16 +63,16 @@
 
                         <div class="col-sm-3 col-xs-12">备注</div>
                         <div class="col-sm-9 col-xs-12">
-                            <input type="text" value="" class="form-control" ng-model="main.reg.Note" required />
+                            <input type="text" value="" class="form-control" ng-model="main.reg.Note" />
                         </div>
 
                         <div class="col-sm-3 col-xs-12">课程类别</div>
                         <div class="col-sm-9 col-xs-12">
                             <select class="form-control" ng-model="main.reg.CourseType">
-                                <option value="chengkao">成考</option>
-                                <option value="gaozikao">高自考</option>
-                                <option value="yanjiusheng">研究生</option>
-                                <option value="erji">二级</option>
+                                <option value="成考">成考</option>
+                                <option value="高自考">高自考</option>
+                                <option value="研究生">研究生</option>
+                                <option value="二级">二级</option>
                             </select>
                         </div>
                     </div>
@@ -93,8 +97,8 @@
                         <div class="col-sm-3 col-xs-12">学历类别</div>
                         <div class="col-sm-9 col-xs-12">
                             <select class="form-control" ng-model="main.reg.EducationDegree">
-                                <option value="zhuanke">专科</option>
-                                <option value="benke">本科</option>
+                                <option value="专科">专科</option>
+                                <option value="本科">本科</option>
                             </select>
                         </div>
 
@@ -115,10 +119,10 @@
                         <div class="col-sm-3 col-xs-12">所在年级</div>
                         <div class="col-sm-9 col-xs-12">
                             <select class="form-control" ng-model="main.reg.CurrentGrade">
-                                <option value="dayi">大一</option>
-                                <option value="daer">大二</option>
-                                <option value="dasan">大三</option>
-                                <option value="dasi">大四</option>
+                                <option value="大一">大一</option>
+                                <option value="大二">大二</option>
+                                <option value="大三">大三</option>
+                                <option value="大四">大四</option>
                             </select>
                         </div>
                     </div>

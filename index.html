@@ -114,7 +114,7 @@
         , updateReg: function(reg){
           var regs = amplify.store('regs') || [];
           var updated = false;
-          for(var i = 0; iLength = regs.length; i < iLength; i++){
+          for(var i = 0, iLength = regs.length; i < iLength; i++){
             var item = regs[i]
             if(item.Id == reg.Id){
               $.extend(item, reg);

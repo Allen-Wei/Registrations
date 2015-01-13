@@ -81,6 +81,8 @@
         redirectTo: '/'
       });
     });
+
+    //# local storage solution
     app.factory('LocalStoreSvc', function(){
       var service = {
         getCount: function(){
@@ -94,7 +96,7 @@
         , getReg: function(){
           var regs = amplify.store('regs') || [];
           var got = undefined; 
-          for(var i = 0; iLength = regs.length; i < iLength; i++){
+          for(var i = 0, iLength = regs.length; i < iLength; i++){
             var item = regs[i]
             if(item.Id == reg.Id){
               got = item;
@@ -127,6 +129,8 @@
       };
       return service;
     });
+    //#end
+
     app.factory('RegSvc', function ($http, $q, AppConstant, LocalStoreSvc) {
       var service = {
         loadColleges: function () {

@@ -88,9 +88,21 @@
           amplify.store('_count', ++count);
           return count;
         }
-        getRegs : function(){
+        , getRegs : function(){
           return amplify.store('regs')||[];
-        },
+        }
+        , getReg: function(){
+          var regs = amplify.store('regs') || [];
+          var got = undefined; 
+          for(var i = 0; iLength = regs.length; i < iLength; i++){
+            var item = regs[i]
+            if(item.Id == reg.Id){
+              got = item;
+              break;
+            }
+          }
+          return got;
+        }
         , addReg:function(reg){
           reg.Id =  this.getCount();
           var regs = amplify.store('regs') || [];
@@ -154,9 +166,10 @@
           return promise;
         }
         , getDetail: function (id) {
-          var promise = $http({
-            method: 'get',
-            url: '/APIv1/Registration/' + id
+          var defer = $q.defer();
+          var promise = defer.promise;
+          defer.resolve({
+            data: LocalStoreSvc.getReg(id)
           });
           return promise;
         }

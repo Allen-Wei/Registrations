@@ -1,6 +1,41 @@
 CACHE MANIFEST
 # v1 - 2011-08-13
 CACHE: 
+	/fonts/fontawesome-webfont.eot
+	/fonts/fontawesome-webfont.svg
+	/fonts/fontawesome-webfont.ttf
+	/fonts/fontawesome-webfont.woff
+	/fonts/FontAwesome.otf
+	/fonts/glyphicons-halflings-regular.eot
+	/fonts/glyphicons-halflings-regular.svg
+	/fonts/glyphicons-halflings-regular.ttf
+	/fonts/glyphicons-halflings-regular.woff
+	/Styles/animate.css
+	/Styles/bootstrap-theme.min.css
+	/Styles/bootstrap.min.css
+	/Styles/font-awesome.min.css
+	/Partials/Education/detail.html
+	/Partials/Education/form.html
+	/Partials/Education/list.html
+	/Partials/Education/print.html
+	/Scripts/angular/directives.js
+	/Scripts/angular/filters.js
+	/Scripts/angular/services.js
+	/Vendors/amplify-vsdoc.js
+	/Vendors/amplify.min.js
+	/Vendors/angular-animate.min.js
+	/Vendors/angular-cookies.min.js
+	/Vendors/angular-loader.min.js
+	/Vendors/angular-messages.min.js
+	/Vendors/angular-mocks.js
+	/Vendors/angular-resource.min.js
+	/Vendors/angular-route.min.js
+	/Vendors/angular-sanitize.min.js
+	/Vendors/angular-scenario.js
+	/Vendors/angular-touch.min.js
 	/Vendors/angular.min.js
+	/Vendors/bootstrap.min.js
+	/Vendors/jquery-2.1.3.min.js
+	/Vendors/npm.js
 NETWORK:
 	*

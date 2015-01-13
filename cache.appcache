@@ -1,6 +1,9 @@
 CACHE MANIFEST
-# v1 - 2011-08-13
+# v2 - 2011-08-13
 CACHE:
+	http://allen-wei.github.io/aUtils/javascripts/scripts/aUtils.js
+	/Registrations
+
 	/Registrations/fonts/fontawesome-webfont.eot
 	/Registrations/fonts/fontawesome-webfont.svg
 	/Registrations/fonts/fontawesome-webfont.ttf
@@ -14,6 +17,22 @@ CACHE:
 	/Registrations/Styles/bootstrap-theme.min.css
 	/Registrations/Styles/bootstrap.min.css
 	/Registrations/Styles/font-awesome.min.css
+	/Registrations/Styles/jquery-ui-1.10.4.min.css
+	/Registrations/Styles/images/animated-overlay.gif
+	/Registrations/Styles/images/ui-bg_diagonals-thick_18_b81900_40x40.png
+	/Registrations/Styles/images/ui-bg_diagonals-thick_20_666666_40x40.png
+	/Registrations/Styles/images/ui-bg_flat_10_000000_40x100.png
+	/Registrations/Styles/images/ui-bg_glass_100_f6f6f6_1x400.png
+	/Registrations/Styles/images/ui-bg_glass_100_fdf5ce_1x400.png
+	/Registrations/Styles/images/ui-bg_glass_65_ffffff_1x400.png
+	/Registrations/Styles/images/ui-bg_gloss-wave_35_f6a828_500x100.png
+	/Registrations/Styles/images/ui-bg_highlight-soft_100_eeeeee_1x100.png
+	/Registrations/Styles/images/ui-bg_highlight-soft_75_ffe45c_1x100.png
+	/Registrations/Styles/images/ui-icons_222222_256x240.png
+	/Registrations/Styles/images/ui-icons_228ef1_256x240.png
+	/Registrations/Styles/images/ui-icons_ef8c08_256x240.png
+	/Registrations/Styles/images/ui-icons_ffd27a_256x240.png
+	/Registrations/Styles/images/ui-icons_ffffff_256x240.png
 	/Registrations/Partials/Education/detail.html
 	/Registrations/Partials/Education/form.html
 	/Registrations/Partials/Education/list.html
@@ -23,6 +42,8 @@ CACHE:
 	/Registrations/Scripts/angular/services.js
 	/Registrations/Vendors/amplify-vsdoc.js
 	/Registrations/Vendors/amplify.min.js
+	/Registrations/Vendors/jquery-2.1.3.min.js
+	/Registrations/Vendors/jquery-ui-1.10.4.min.js
 	/Registrations/Vendors/angular-animate.min.js
 	/Registrations/Vendors/angular-cookies.min.js
 	/Registrations/Vendors/angular-loader.min.js
@@ -35,5 +56,4 @@ CACHE:
 	/Registrations/Vendors/angular-touch.min.js
 	/Registrations/Vendors/angular.min.js
 	/Registrations/Vendors/bootstrap.min.js
-	/Registrations/Vendors/jquery-2.1.3.min.js
 	/Registrations/Vendors/npm.js

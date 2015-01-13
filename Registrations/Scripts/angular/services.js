@@ -5,11 +5,22 @@
                 show: false,
                 text: '',
                 duration: function (txt, time) {
-                    this.show = true;
-                    this.text = txt || 'Eorror parameters.';
+                    this.toShow(txt);
                     $timeout(function () {
-                        service.show = false;
+                        service.toHide();
                     }, time || 2000);
+                },
+
+                toShow: function (txt) {
+                    this.toTip(txt);
+                },
+                toTip: function (txt) {
+                    this.show = true;
+                    this.text = txt;
+                },
+                toHide: function () {
+                    this.show = false;
+                    this.text = '';
                 }
             };
             return service;

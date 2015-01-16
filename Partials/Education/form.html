@@ -1,4 +1,7 @@
-﻿
+﻿<style type="text/css">
+    .col-sm-12 b:after{content: ':'}
+</style>
+
 <div class="row top10 bottom10">
     <div class="col-sm-12">
         <a href="#/" class="btn btn-default glyphicon glyphicon-home"></a>
@@ -6,7 +9,7 @@
 </div>
 <form class="new-form" role="form" name="NewForm">
     <div class="row">
-        <div class="col-md-6 col-sm-12">
+        <div class="col-sm-6 col-xs-12">
 
             <div class="panel panel-primary">
                 <div class="panel-heading">
@@ -14,9 +17,11 @@
                 </div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-sm-3 col-xs-12">报名日期</div>
+                        <div class="col-sm-3 col-xs-12">
+                            <b>报名日期</b>
+                        </div>
                         <div class="col-sm-9 col-xs-12">
-                            
+
                             <input type="text"
                                    class="form-control"
                                    select-date
@@ -25,12 +30,16 @@
                                    required />
                         </div>
 
-                        <div class="col-sm-3 col-xs-12">姓名</div>
+                        <div class="col-sm-3 col-xs-12">
+                            <b>姓名</b>
+                        </div>
                         <div class="col-sm-9 col-xs-12">
                             <input type="text" value="" class="form-control" ng-model="main.reg.StudentName" required />
                         </div>
 
-                        <div class="col-sm-3 col-xs-12">性别</div>
+                        <div class="col-sm-3 col-xs-12">
+                            <b>性别</b>
+                        </div>
                         <div class="col-sm-9 col-xs-12">
                             <select class="form-control" ng-model="main.reg.Gender">
                                 <option value="true">男</option>
@@ -38,22 +47,30 @@
                             </select>
                         </div>
 
-                        <div class="col-sm-3 col-xs-12">电话</div>
+                        <div class="col-sm-3 col-xs-12">
+                            <b>电话</b>
+                        </div>
                         <div class="col-sm-9 col-xs-12">
                             <input type="text" value="" class="form-control" ng-model="main.reg.Phone" required />
                         </div>
 
-                        <div class="col-sm-3 col-xs-12">费用</div>
+                        <div class="col-sm-3 col-xs-12">
+                            <b>费用</b>
+                        </div>
                         <div class="col-sm-9 col-xs-12">
                             <input type="number" value="" class="form-control" ng-model="main.reg.Price" required />
                         </div>
 
-                        <div class="col-sm-3 col-xs-12">收款人</div>
+                        <div class="col-sm-3 col-xs-12">
+                            <b>收款人</b>
+                        </div>
                         <div class="col-sm-9 col-xs-12">
                             <input type="text" value="" class="form-control" ng-model="main.reg.Payee" required />
                         </div>
 
-                        <div class="col-sm-3 col-xs-12">地址</div>
+                        <div class="col-sm-3 col-xs-12">
+                            <b>地址</b>
+                        </div>
                         <div class="col-sm-9 col-xs-12">
                             <select class="form-control" ng-model="main.reg.RegistrationAddress">
                                 <option value="总部">总部</option>
@@ -62,17 +79,23 @@
                             </select>
                         </div>
 
-                        <div class="col-sm-3 col-xs-12">住址</div>
+                        <div class="col-sm-3 col-xs-12">
+                            <b>住址</b>
+                        </div>
                         <div class="col-sm-9 col-xs-12">
                             <input type="text" value="" class="form-control" ng-model="main.reg.HomeAddress" required />
                         </div>
 
-                        <div class="col-sm-3 col-xs-12">备注</div>
+                        <div class="col-sm-3 col-xs-12">
+                            <b>备注</b>
+                        </div>
                         <div class="col-sm-9 col-xs-12">
                             <input type="text" value="" class="form-control" ng-model="main.reg.Note" />
                         </div>
 
-                        <div class="col-sm-3 col-xs-12">课程类别</div>
+                        <div class="col-sm-3 col-xs-12">
+                            <b>课程类别</b>
+                        </div>
                         <div class="col-sm-9 col-xs-12">
                             <select class="form-control" ng-model="main.reg.CourseType">
                                 <option value="成考">成考</option>
@@ -87,20 +110,24 @@
             </div>
 
         </div>
-        <div class="col-md-6 col-sm-12">
+        <div class="col-sm-6 col-xs-12">
 
-            <div class="panel panel-info">
+            <div class="panel panel-info" ng-hide="main.reg.CourseType=='二级'">
                 <div class="panel-heading">所报院校</div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-sm-3 col-xs-12">所报院校</div>
+                        <div class="col-sm-3 col-xs-12">
+                            <b>所报院校</b>
+                        </div>
                         <div class="col-sm-9 col-xs-12">
                             <select class="form-control" ng-model="main.reg.RegistrateCollege">
                                 <option ng-repeat="college in main.colleges.choices">{{college}}</option>
                             </select>
                         </div>
 
-                        <div class="col-sm-3 col-xs-12">学历类别</div>
+                        <div class="col-sm-3 col-xs-12">
+                            <b>学历类别</b>
+                        </div>
                         <div class="col-sm-9 col-xs-12">
                             <select class="form-control" ng-model="main.reg.EducationDegree">
                                 <option value="专科">专科</option>
@@ -112,17 +139,21 @@
                 </div>
             </div>
 
-            <div class="panel panel-info">
+            <div class="panel panel-info" ng-show="main.reg.CourseType=='二级'">
                 <div class="panel-heading">所在院校</div>
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-sm-3 col-xs-12">所在院校</div>
+                        <div class="col-sm-3 col-xs-12">
+                            <b>所在院校</b>
+                        </div>
                         <div class="col-sm-9 col-xs-12">
                             <select class="form-control" ng-model="main.reg.CurrentCollege">
                                 <option ng-repeat="college in main.colleges.all">{{college}}</option>
                             </select>
                         </div>
-                        <div class="col-sm-3 col-xs-12">所在年级</div>
+                        <div class="col-sm-3 col-xs-12">
+                            <b>所在年级</b>
+                        </div>
                         <div class="col-sm-9 col-xs-12">
                             <select class="form-control" ng-model="main.reg.CurrentGrade">
                                 <option value="大一">大一</option>
@@ -136,7 +167,7 @@
             </div>
 
         </div>
-        
+
     </div>
 
     <div class="row">

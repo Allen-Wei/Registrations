@@ -5,20 +5,32 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
+using Microsoft.Ajax.Utilities;
+using Registrations.Models;
 using WebGrease.Css.Extensions;
 
 namespace Registrations.Controllers
 {
     public class EducationController : Controller
     {
-        //
-        // GET: /Education/
+        RegistrationModel model = new RegistrationModel();
 
         public ActionResult Index()
         {
             return View();
         }
 
+        public ActionResult Receipt(int id)
+        {
+            var reg = model.Registrations.FirstOrDefault(r => r.Id == id);
+            if (reg == null) { Response.Redirect("/"); }
+            return View(reg);
+        }
+
+        public ActionResult Demo()
+        {
+            return View();
+        }
 
         public string GenerateManifest()
         {

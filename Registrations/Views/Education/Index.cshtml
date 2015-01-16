@@ -83,6 +83,13 @@
                 });
                 return promise;
             }
+            ,remove: function(id) {
+                var promise = $http({
+                    method: 'delete',
+                    url: '/APIv1/Registration/' + id
+                });
+                return promise;
+            }
         };
         return service;
     });
@@ -105,6 +112,20 @@
                     $scope.main.regs = rep.data;
                     $scope.main.pages = parseInt(rep.headers('X-HeyHey-Pages'));
                     $scope.main.total = parseInt(rep.headers('X-HeyHey-Total'));
+                });
+            },
+            remove:function(index) {
+                var reg = this.regs[index];
+                if (!reg) {
+                    throw 'Cannot find ' + index;
+                }
+
+                RegSvc.remove(reg.Id).then(function(rep) {
+                    if (rep.data) {
+                        $scope.main.regs.splice(index, 1);
+                    }
+                }, function(rep) {
+                    console.log('deleted fail.');
                 });
             }
         };

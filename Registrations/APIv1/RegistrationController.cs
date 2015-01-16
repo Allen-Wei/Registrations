@@ -27,7 +27,7 @@ namespace Registrations.APIv1
         {
             return model.Registrations.FirstOrDefault(r => r.Id == id);
         }
-        public Registration Put( Registration registration)
+        public Registration Put(Registration registration)
         {
             model.Registrations.InsertOnSubmit(registration);
             model.SubmitChanges();
@@ -54,6 +54,16 @@ namespace Registrations.APIv1
             reg.Note = registration.Note;
             model.SubmitChanges();
             return reg;
+        }
+
+        public bool Delete(int id)
+        {
+
+            var reg = model.Registrations.FirstOrDefault(r => r.Id == id);
+            if (reg == null) { return false; }
+            model.Registrations.DeleteOnSubmit(reg);
+            model.SubmitChanges();
+            return true;
         }
     }
 }

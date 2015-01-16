@@ -32,7 +32,8 @@
                         <td class="hidden-xs hidden-sm">{{reg.Payee}}</td>
                         <td>
                             <a href="#/edit/{{reg.Id}}" class="btn btn-xs btn-default glyphicon glyphicon-pencil"></a>
-                            <a href="#/print/{{reg.Id}}" class="btn btn-xs btn-default glyphicon glyphicon-print"></a>
+                            <a href="#/print/{{reg.Id}}" class="btn btn-xs btn-default glyphicon glyphicon-print hidden-sm hidden-xs"></a>
+                            <button class="btn btn-xs btn-danger glyphicon glyphicon-remove" ng-click="main.remove($index)"></button>
                         </td>
                     </tr>
                 </tbody>

@@ -178,6 +178,17 @@ app.factory('LocalStoreSvc', function () {
                 }
             }
             return updated;
+        }, removeReg:function(id){
+            var regs = amplify.store('regs') || [];
+            var deleted = false;
+            for(var i = 0, iLength = regs.length; i< iLength; i++){
+                if(regs[i].Id == id){
+                    regs.splice(i, 1);
+                    deleted = true;
+                    break;
+                }
+            }
+            return deleted;
         }
     };
     return service;
@@ -241,9 +252,15 @@ app.factory('RegSvc', function ($http, $q, AppConstant, LocalStoreSvc) {
             return promise;
         }, remove: function (id) {
             var defer = $q.defer();
-            defer.resolve({
-                data: true
-            })
+            if( LocalStoreSvc.removeReg(id)) {
+                defer.resolve({
+                    data: true
+                });
+            }else{
+                defer.reject({
+                    data:false
+                });
+            }
             return defer.promise;
         }
     };

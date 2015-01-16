@@ -1,309 +1,378 @@
 <!doctype html>
 <html manifest="cache.appcache">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-  <title>Registrations by Allen-Wei</title>
-  <link href="Styles/bootstrap.min.css" rel="stylesheet" />
-  <link href="Styles/font-awesome.min.css" rel="stylesheet" />
-  <link href="Styles/jquery-ui-1.10.4.min.css" rel="stylesheet" />
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Registrations by Allen-Wei</title>
+    <link href="Styles/bootstrap.min.css" rel="stylesheet"/>
+    <link href="Styles/font-awesome.min.css" rel="stylesheet"/>
+    <link href="Styles/jquery-ui-1.10.4.min.css" rel="stylesheet"/>
 
-  <script src="Vendors/jquery-2.1.3.min.js"></script>
-  <script src="Vendors/jquery-ui-1.10.4.min.js"></script>
-  <script src="Vendors/amplify.min.js"></script>
-  <script src="Vendors/bootstrap.min.js"></script>
+    <script src="Vendors/jquery-2.1.3.min.js"></script>
+    <script src="Vendors/jquery-ui-1.10.4.min.js"></script>
+    <script src="Vendors/amplify.min.js"></script>
+    <script src="Vendors/bootstrap.min.js"></script>
 
-  <script src="Vendors/angular.min.js"></script>
-  <script type="text/javascript" src="http://allen-wei.github.io/aUtils/javascripts/scripts/aUtils.js"></script>
-  <script src="Vendors/angular-animate.min.js"></script>
-  <script src="Vendors/angular-loader.min.js"></script>
-  <script src="Vendors/angular-route.min.js"></script>
-  <script src="Vendors/angular-sanitize.min.js"></script>
-  <script src="Scripts/angular/directives.js"></script>
-  <script src="Scripts/angular/filters.js"></script>
-  <script src="Scripts/angular/services.js"></script>
-  <style type="text/css">
-  * { font-family: 微软雅黑, sans-serif; }
-  input[type=radio] { -webkit-appearance: radio; }
-  input[type=checkbox] { -webkit-appearance: checkbox; }
-  .form-control[readonly] { background-color: white; }
-  .tip { margin-left: -30px; position: fixed; z-index: 100; background-color: rgba(30, 30, 30, 0.3); width: 100%; padding: 0 8px; top: 50px; min-height: 30px; line-height: 30px; }
-  .ellipsis { display: inline-block; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
-  .ellipsis-base { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
-  .ng-hide, .hide { display: none; }
-  .hey-inline { display: inline-block; width: auto; }
-  .input-group .form-control { z-index: 1; }
+    <script src="Vendors/angular.min.js"></script>
+    <script type="text/javascript" src="http://allen-wei.github.io/aUtils/javascripts/scripts/aUtils.js"></script>
+    <script src="Vendors/angular-animate.min.js"></script>
+    <script src="Vendors/angular-loader.min.js"></script>
+    <script src="Vendors/angular-route.min.js"></script>
+    <script src="Vendors/angular-sanitize.min.js"></script>
+    <script src="Scripts/angular/directives.js"></script>
+    <script src="Scripts/angular/filters.js"></script>
+    <script src="Scripts/angular/services.js"></script>
+    <style type="text/css">
+        * {
+            font-family: 微 软 雅 黑, sans-serif;
+        }
 
-  .top10{margin-top: 10px;}
-  .bottom10{margin-bottom: 10px;}
+        input[type=radio] {
+            -webkit-appearance: radio;
+        }
 
+        input[type=checkbox] {
+            -webkit-appearance: checkbox;
+        }
 
-  .new-form { }
-  .new-form .col-xs-12 { margin-top: 10px; vertical-align: middle; }
-  /*.new-form .col-xs-12:nth-child(odd){text-align: right;}*/
-  </style>
-  <script type="text/javascript">
-  amplify.eDeepClone = function (obj) {
-    var id = aUtils.guid();
-    amplify.store(id, obj, { expires: 100 });
-    var cloned = amplify.store(id);
-    amplify.store(id, null);
-    return cloned;
-  };
-  </script>
+        .form-control[readonly] {
+            background-color: white;
+        }
+
+        .tip {
+            margin-left: -30px;
+            position: fixed;
+            z-index: 100;
+            background-color: rgba(30, 30, 30, 0.3);
+            width: 100%;
+            padding: 0 8px;
+            top: 50px;
+            min-height: 30px;
+            line-height: 30px;
+        }
+
+        .ellipsis {
+            display: inline-block;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .ellipsis-base {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .ng-hide, .hide {
+            display: none;
+        }
+
+        .hey-inline {
+            display: inline-block;
+            width: auto;
+        }
+
+        .input-group .form-control {
+            z-index: 1;
+        }
+
+        .top10 {
+            margin-top: 10px;
+        }
+
+        .bottom10 {
+            margin-bottom: 10px;
+        }
+
+        .new-form {
+        }
+
+        .new-form .col-xs-12 {
+            margin-top: 10px;
+            vertical-align: middle;
+        }
+
+        /*.new-form .col-xs-12:nth-child(odd){text-align: right;}*/
+    </style>
+    <script type="text/javascript">
+        amplify.eDeepClone = function (obj) {
+            var id = aUtils.guid();
+            amplify.store(id, obj, { expires: 100 });
+            var cloned = amplify.store(id);
+            amplify.store(id, null);
+            return cloned;
+        };
+    </script>
 </head>
 <body>
-  <header></header>
-  <div id="body" class="container-fluid">
-    <div ng-app="Registration">
-      <div ng-controller="BodyCtrl">
+<header></header>
+<div id="body" class="container-fluid">
+<div ng-app="Registration">
+    <div ng-controller="BodyCtrl">
         <div ng-view></div>
-      </div>
     </div>
+</div>
 
 
-    <script>
-    var app = angular.module('Registration', ['ngRoute', 'registration.services', 'registration.directives', 'registration.filters']);
-    app.config(function ($routeProvider) {
-      $routeProvider.when('/', {
+<script>
+var app = angular.module('Registration', ['ngRoute', 'registration.services', 'registration.directives', 'registration.filters']);
+app.config(function ($routeProvider) {
+    $routeProvider.when('/', {
         controller: 'ListCtrl',
         templateUrl: 'Partials/Education/list.html'
-      }).when('/detail/:id', {
+    }).when('/detail/:id', {
         controller: 'DetailCtrl',
         templateUrl: 'Partials/Education/detail.html'
-      }).when('/edit/:id', {
+    }).when('/edit/:id', {
         controller: 'FormCtrl',
         templateUrl: 'Partials/Education/form.html'
-      }).when('/new', {
+    }).when('/new', {
         controller: 'FormCtrl',
         templateUrl: 'Partials/Education/form.html'
-      }).when('/print/:id', {
+    }).when('/print/:id', {
         controller: 'PrintCtrl',
         templateUrl: 'Partials/Education/print.html'
-      }).otherwise({
+    }).otherwise({
         redirectTo: '/'
-      });
     });
+});
 
-    //# local storage solution
-    app.factory('LocalStoreSvc', function(){
-      var service = {
-        getCount: function(){
-          var count = amplify.store('_count') || 1;
-          amplify.store('_count', ++count);
-          return count;
-        }
-        , getRegs : function(){
-          return amplify.store('regs')||[];
-        }
-        , getReg: function(id){
-          var regs = amplify.store('regs') || [];
-          var got = undefined; 
-          for(var i = 0, iLength = regs.length; i < iLength; i++){
-            var item = regs[i]
-            if(item.Id == id){
-              got = item;
-              break;
+//# local storage solution
+app.factory('LocalStoreSvc', function () {
+    var service = {
+        getCount: function () {
+            var count = amplify.store('_count') || 1;
+            amplify.store('_count', ++count);
+            return count;
+        }, getRegs: function () {
+            return amplify.store('regs') || [];
+        }, getReg: function (id) {
+            var regs = amplify.store('regs') || [];
+            var got = undefined;
+            for (var i = 0, iLength = regs.length; i < iLength; i++) {
+                var item = regs[i]
+                if (item.Id == id) {
+                    got = item;
+                    break;
+                }
             }
-          }
-          return got;
-        }
-        , addReg:function(reg){
-          reg.Id =  this.getCount();
-          var regs = amplify.store('regs') || [];
-          regs.push(reg);
-          amplify.store('regs', regs);
-          return reg;
-        }
-        , updateReg: function(reg){
-          var regs = amplify.store('regs') || [];
-          var updated = false;
-          for(var i = 0, iLength = regs.length; i < iLength; i++){
-            var item = regs[i]
-            if(item.Id == reg.Id){
-              $.extend(item, reg);
-              updated = true;
-              regs[i] = item;
-              amplify.store('regs', regs);
-              break;
+            return got;
+        }, addReg: function (reg) {
+            reg.Id = this.getCount();
+            var regs = amplify.store('regs') || [];
+            regs.push(reg);
+            amplify.store('regs', regs);
+            return reg;
+        }, updateReg: function (reg) {
+            var regs = amplify.store('regs') || [];
+            var updated = false;
+            for (var i = 0, iLength = regs.length; i < iLength; i++) {
+                var item = regs[i]
+                if (item.Id == reg.Id) {
+                    $.extend(item, reg);
+                    updated = true;
+                    regs[i] = item;
+                    amplify.store('regs', regs);
+                    break;
+                }
             }
-          }
-          return updated;
+            return updated;
         }
-      };
-      return service;
-    });
-    //#end
+    };
+    return service;
+});
+//#end
 
-    app.factory('RegSvc', function ($http, $q, AppConstant, LocalStoreSvc) {
-      var service = {
+app.factory('RegSvc', function ($http, $q, AppConstant, LocalStoreSvc) {
+    var service = {
         loadColleges: function () {
-          var defer = $q.defer();
-          var data  = [{"Id":6,"Gid":"d1d6be8e-53cb-4210-8fb5-26e16017646a","Name":"电子技术学院","CanRegistrate":false},{"Id":1,"Gid":"0f8e6fb5-a165-4b10-aa23-369eaa4e4956","Name":"南开大学","CanRegistrate":true},{"Id":2,"Gid":"e223d368-f840-4c2d-a1e3-5d23556a5faa","Name":"天津大学","CanRegistrate":true},{"Id":3,"Gid":"812ac696-9694-4824-9e0e-6ba8c25c196a","Name":"外国语学院","CanRegistrate":true},{"Id":5,"Gid":"20dd19bb-241a-4319-adc4-cfd996376fcf","Name":"中德职业技术学院","CanRegistrate":false},{"Id":4,"Gid":"7810dcee-f059-4973-a8ff-efb49ad5bebe","Name":"财经大学","CanRegistrate":true}];
-          defer.resolve({data: data});
-          return defer.promise;
-        }
-        , add: function (reg) {
-          var defer = $q.defer();
-          var promise = defer.promise;
-          reg = LocalStoreSvc.addReg(reg);
-          defer.resolve({data: reg});
-          return promise;
-        }
-        , loadRegList: function (page) {
-          var take = AppConstant.perPage;
-          var skip = (page - 1) * take;
-          var regs = LocalStoreSvc.getRegs();
-          var total = regs.length;
-          var pages = Math.ceil(total/take);
-          var data = regs.splice(skip, take);
+            var defer = $q.defer();
+            var data = [
+                {"Id": 6, "Gid": "d1d6be8e-53cb-4210-8fb5-26e16017646a", "Name": "电子技术学院", "CanRegistrate": false},
+                {"Id": 1, "Gid": "0f8e6fb5-a165-4b10-aa23-369eaa4e4956", "Name": "南开大学", "CanRegistrate": true},
+                {"Id": 2, "Gid": "e223d368-f840-4c2d-a1e3-5d23556a5faa", "Name": "天津大学", "CanRegistrate": true},
+                {"Id": 3, "Gid": "812ac696-9694-4824-9e0e-6ba8c25c196a", "Name": "外国语学院", "CanRegistrate": true},
+                {"Id": 5, "Gid": "20dd19bb-241a-4319-adc4-cfd996376fcf", "Name": "中德职业技术学院", "CanRegistrate": false},
+                {"Id": 4, "Gid": "7810dcee-f059-4973-a8ff-efb49ad5bebe", "Name": "财经大学", "CanRegistrate": true}
+            ];
+            defer.resolve({data: data});
+            return defer.promise;
+        }, add: function (reg) {
+            var defer = $q.defer();
+            var promise = defer.promise;
+            reg = LocalStoreSvc.addReg(reg);
+            defer.resolve({data: reg});
+            return promise;
+        }, loadRegList: function (page) {
+            var take = AppConstant.perPage;
+            var skip = (page - 1) * take;
+            var regs = LocalStoreSvc.getRegs();
+            var total = regs.length;
+            var pages = Math.ceil(total / take);
+            var data = regs.splice(skip, take);
 
-          var headers = function(head){
-            var repHeader = {
-              'X-HeyHey-Pages': pages,
-              'X-HeyHey-Total': total
+            var headers = function (head) {
+                var repHeader = {
+                    'X-HeyHey-Pages': pages,
+                    'X-HeyHey-Total': total
+                };
+                return repHeader[head];
             };
-            return repHeader[head];
-          };
-          var defer = $q.defer();
-          var promise = defer.promise;
-          defer.resolve({
-            data: data,
-            headers: headers
-          })
-          return promise;
+            var defer = $q.defer();
+            var promise = defer.promise;
+            defer.resolve({
+                data: data,
+                headers: headers
+            })
+            return promise;
+        }, getDetail: function (id) {
+            var defer = $q.defer();
+            var promise = defer.promise;
+            defer.resolve({
+                data: LocalStoreSvc.getReg(id)
+            });
+            return promise;
+        }, update: function (reg) {
+            var defer = $q.defer();
+            var promise = defer.promise;
+            reg = LocalStoreSvc.updateReg(reg);
+            defer.resolve({data: reg});
+            return promise;
+        }, remove: function (id) {
+            var defer = $q.defer();
+            defer.resolve({
+                data: true
+            })
+            return defer.promise;
         }
-        , getDetail: function (id) {
-          var defer = $q.defer();
-          var promise = defer.promise;
-          defer.resolve({
-            data: LocalStoreSvc.getReg(id)
-          });
-          return promise;
-        }
-        , update: function (reg) {
-          var defer = $q.defer();
-          var promise = defer.promise;
-          reg = LocalStoreSvc.updateReg(reg);
-          defer.resolve({data: reg});
-          return promise;
-        }
-      };
-      return service;
-    });
+    };
+    return service;
+});
 app.controller('BodyCtrl', function ($scope, AppConstant) {
-  $scope.constant = AppConstant;
+    $scope.constant = AppConstant;
 });
 app.controller('ListCtrl', function ($scope, RegSvc) {
 
-  $scope.main = {
-    regs: [],
-    page: 1,
-    pages: 1,
-    total: 1,
-    load: function (p) {
-      RegSvc.loadRegList(p).then(function (rep) {
-        $scope.main.regs = rep.data;
-        $scope.main.pages = parseInt(rep.headers('X-HeyHey-Pages'));
-        $scope.main.total = parseInt(rep.headers('X-HeyHey-Total'));
-      });
-    }
-  };
+    $scope.main = {
+        regs: [],
+        page: 1,
+        pages: 1,
+        total: 1,
+        load: function (p) {
+            RegSvc.loadRegList(p).then(function (rep) {
+                $scope.main.regs = rep.data;
+                $scope.main.pages = parseInt(rep.headers('X-HeyHey-Pages'));
+                $scope.main.total = parseInt(rep.headers('X-HeyHey-Total'));
+            });
+        },
+        remove: function (index) {
+            var reg = this.regs[index];
+            if (!reg) {
+                throw 'Cannot find ' + index;
+            }
 
-  $scope.$watch('main.page', function (newVal, oldVal) {
-    if (newVal <= 0) {
-      throw 'Erro page number: ' + newVal;
-    }
-    if (newVal > $scope.main.pages) {
-      throw 'Out of max pages: ' + newVal;
-    }
-    $scope.main.load(newVal);
-  });
+            RegSvc.remove(reg.Id).then(function (rep) {
+                if (rep.data) {
+                    $scope.main.regs.splice(index, 1);
+                }
+            }, function (rep) {
+                console.log('deleted fail.');
+            });
+        }
+    };
+
+    $scope.$watch('main.page', function (newVal, oldVal) {
+        if (newVal <= 0) {
+            throw 'Erro page number: ' + newVal;
+        }
+        if (newVal > $scope.main.pages) {
+            throw 'Out of max pages: ' + newVal;
+        }
+        $scope.main.load(newVal);
+    });
 });
 app.controller('DetailCtrl', function ($scope, $routeParams, RegSvc) {
-  $scope.main = {
-    reg: {}
-  };
-  RegSvc.getDetail($routeParams.id).then(function (rep) {
-    $scope.main.reg = rep.data;
-  });
+    $scope.main = {
+        reg: {}
+    };
+    RegSvc.getDetail($routeParams.id).then(function (rep) {
+        $scope.main.reg = rep.data;
+    });
 });
 app.controller('PrintCtrl', function ($scope, RegSvc, $routeParams) {
-  $scope.main = {
-    reg:{}
-  };
-  RegSvc.getDetail($routeParams.id).then(function(rep) {
-    $scope.main.reg = rep.data;
-  });
+    $scope.main = {
+        reg: {}
+    };
+    RegSvc.getDetail($routeParams.id).then(function (rep) {
+        $scope.main.reg = rep.data;
+    });
 });
 app.controller('FormCtrl', function ($scope, $http, $filter, AppConstant, RegSvc, $location, $routeParams) {
-  $scope.main = {
-    mode: 'add',
-    reg: {
-      RegistrateDate: $filter('date')(new Date(), AppConstant.ngDateFormat),
-      StudentName: '',
-      Gender: 'true',
-      Phone: '',
-      Price: 0,
-      CourseType: '成考',
-      RegistrationAddress: '总部',
-      HomeAddress: '',
-      Payee: '',
-      CurrentGrade: '大一',
-      CurrentCollege: '',
-      RegistrateCollege: '',
-      EducationDegree: '专科',
-      Note: ''
-    }
-    , colleges: {
-      choices: [],
-      all: []
-    }
-    , submit: function () {
-      if (this.mode == 'update') {
-        RegSvc.update(this.reg).then(function() {
-          $location.path('/');
-        });
-      } else {
-        RegSvc.add(this.reg).then(function (rep) {
-          $location.path('/print/' + rep.data.Id);
-        });
+    $scope.main = {
+        mode: 'add',
+        reg: {
+            RegistrateDate: $filter('date')(new Date(), AppConstant.ngDateFormat),
+            StudentName: '',
+            Gender: 'true',
+            Phone: '',
+            Price: 0,
+            CourseType: '成考',
+            RegistrationAddress: '总部',
+            HomeAddress: '',
+            Payee: '',
+            CurrentGrade: '大一',
+            CurrentCollege: '',
+            RegistrateCollege: '',
+            EducationDegree: '专科',
+            Note: ''
+        }, colleges: {
+            choices: [],
+            all: []
+        }, submit: function () {
+            if (this.mode == 'update') {
+                RegSvc.update(this.reg).then(function () {
+                    $location.path('/');
+                });
+            } else {
+                RegSvc.add(this.reg).then(function (rep) {
+                    $location.path('/print/' + rep.data.Id);
+                });
 
-      }
-    }
-  };
+            }
+        }
+    };
 
-  (function () {
-    if ($routeParams.id) {
-      $scope.main.mode = 'update';
-    } else {
-      $scope.main.mode = 'add';
-    }
+    (function () {
+        if ($routeParams.id) {
+            $scope.main.mode = 'update';
+        } else {
+            $scope.main.mode = 'add';
+        }
 
-    if ($scope.main.mode == 'update') {
-      RegSvc.getDetail($routeParams.id).then(function (rep) {
-        $scope.main.reg = rep.data;
-        $scope.main.reg.RegistrateDate = $filter('date')(rep.data.RegistrateDate, AppConstant.ngDateFormat);
-        $scope.main.reg.Gender = rep.data.Gender.toString();
-      });
-    }
+        if ($scope.main.mode == 'update') {
+            RegSvc.getDetail($routeParams.id).then(function (rep) {
+                $scope.main.reg = rep.data;
+                $scope.main.reg.RegistrateDate = $filter('date')(rep.data.RegistrateDate, AppConstant.ngDateFormat);
+                $scope.main.reg.Gender = rep.data.Gender.toString();
+            });
+        }
 
-            //load all colleges
-            RegSvc.loadColleges().then(function (rep) {
-              angular.forEach(rep.data, function (college) {
+        //load all colleges
+        RegSvc.loadColleges().then(function (rep) {
+            angular.forEach(rep.data, function (college) {
                 $scope.main.colleges.all.push(college.Name);
                 if (college.CanRegistrate) {
-                  $scope.main.colleges.choices.push(college.Name);
+                    $scope.main.colleges.choices.push(college.Name);
                 }
-              });
-              $scope.main.reg.CurrentCollege = $scope.main.colleges.all[0];
-              $scope.main.reg.RegistrateCollege = $scope.main.colleges.choices[0];
             });
-          })();
-
-
-
+            $scope.main.reg.CurrentCollege = $scope.main.colleges.all[0];
+            $scope.main.reg.RegistrateCollege = $scope.main.colleges.choices[0];
         });
+    })();
+
+
+});
 </script>
 
 
@@ -311,4 +380,4 @@ app.controller('FormCtrl', function ($scope, $http, $filter, AppConstant, RegSvc
 <footer></footer>
 
 </body>
-</html
+</html>

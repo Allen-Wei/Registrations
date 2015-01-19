@@ -29,6 +29,7 @@ namespace Registrations.Controllers
 
         public ActionResult Demo()
         {
+            model.CreateDatabase();
             return View();
         }
 

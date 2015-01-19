@@ -11,14 +11,14 @@ namespace Registrations.APIv1
     public class CollegeController : ApiController
     {
         RegistrationModel model = new RegistrationModel();
-        public List<College> Get()
+        public IEnumerable<College> Get()
         {
-            return model.Colleges.Select(c => c).ToList();
+            return model.Colleges.Select(c => c);
         }
 
-        public List<College> Get(bool canRegistrate)
+        public IEnumerable<College> Get(bool canRegistrate)
         {
-            return model.Colleges.Where(c=>c.CanRegistrate == canRegistrate).Select(c => c).ToList(); 
+            return model.Colleges.Where(c => c.CanRegistrate == canRegistrate).Select(c => c);
         }
     }
 }

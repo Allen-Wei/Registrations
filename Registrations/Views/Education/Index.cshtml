@@ -1,32 +1,36 @@
 ﻿@{
-    ViewBag.Title = "New";
+    ViewBag.Title = "报名管理";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section header{
+    @Html.Partial("~/Views/Partials/angular.cshtml")
+    @Html.Partial("~/Views/Partials/jqueryui.cshtml")
     <style type="text/css">
-        .new-form {
-        }
+        input[type=radio] { -webkit-appearance: radio; }
+        input[type=checkbox] { -webkit-appearance: checkbox; }
+        .form-control[readonly] { background-color: white; }
+        .tip { margin-left: -30px; position: fixed; z-index: 100; background-color: rgba(30, 30, 30, 0.3); width: 100%; padding: 0 8px; top: 50px; min-height: 30px; line-height: 30px; }
+        .ellipsis { display: inline-block; text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+        .ellipsis-base { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
+        .ng-hide, .hide { display: none; }
+        .hey-inline { display: inline-block; width: auto; }
+        .input-group .form-control { z-index: 1; }
 
-        .new-form .col-xs-12 {
-            margin-top: 10px;
-            vertical-align: middle;
-        }
+        .top10 { margin-top: 10px; }
+        .bottom10 { margin-bottom: 10px; }
+
+        .new-form .col-xs-12 { margin-top: 10px; vertical-align: middle; }
         /*for form.html, detai.html*/
-        .header-sub {
-            color: #aaa;
-        }
-
-        .header-sub:after {
-            /*content: ':';*/
-        }
+        .header-sub { color: #aaa; }
     </style>
 }
 
+@Html.Partial("~/Views/Partials/breadcrumb.cshtml")
 
 <div ng-app="Registration">
     <div ng-controller="BodyCtrl">
-        <div ng-view></div>
+        <div class="container-fluid" ng-view></div>
     </div>
 </div>
 
@@ -46,86 +50,32 @@
         }).when('/new', {
             controller: 'FormCtrl',
             templateUrl: '/Partials/Education/form.html'
-        }).when('/print/:id', {
-            controller: 'PrintCtrl',
-            templateUrl: '/Partials/Education/print.html'
         }).otherwise({
             redirectTo: '/'
         });
     });
 
-    app.factory('RegSvc', function ($http, AppConstant) {
-        var service = {
-            loadColleges: function () {
-                var promise = $http({
-                    method: 'get',
-                    url: '/APIv1/College'
-                });
-                return promise;
-            }
-            , add: function (reg) {
-                var promise = $http({
-                    method: 'put',
-                    url: '/APIv1/Registration',
-                    data: reg
-                });
-                return promise;
-            }
-            , loadRegList: function (page) {
-                var take = AppConstant.perPage;
-                var skip = (page - 1) * take;
-                var promise = $http({
-                    method: 'get',
-                    url: '/APIv1/Registration',
-                    params: { take: take, skip: skip }
-                });
-                return promise;
-            }
-            , getDetail: function (id) {
-                var promise = $http({
-                    method: 'get',
-                    url: '/APIv1/Registration/' + id
-                });
-                return promise;
-            }
-            , update: function (reg) {
-                var promise = $http({
-                    method: 'post',
-                    url: '/APIv1/Registration',
-                    data: reg
-                });
-                return promise;
-            }
-            , remove: function (id) {
-                var promise = $http({
-                    method: 'delete',
-                    url: '/APIv1/Registration/' + id
-                });
-                return promise;
-            }
-            , loadCourseCategories: function () {
-                var promise = $http({
-                    method: 'get',
-                    url: '/APIv1/CourseCategory'
-                });
-                return promise;
-            }
-            , loadCourses: function (categoryName) {
-                var promise = $http({
-                    method: 'get',
-                    url: '/APIv1/Course?category=' + categoryName
-                });
-                return promise;
-            }
-        };
-        return service;
-    });
 
-
-
-
-    app.controller('BodyCtrl', function ($scope, AppConstant) {
+    app.controller('BodyCtrl', function ($scope, AppConstant, $location) {
         $scope.constant = AppConstant;
+        $scope.$on('$routeChangeStart', function (next, current) {
+            var paths = [{ href: '/', text: '网站' }, { href: '#/', text: '主页' }];
+            var path = $location.path();
+            switch (path) {
+                case '/': paths[1].href = undefined; break;
+                case '/new': paths.push({ text: '新增' }); break;
+                default: (function () {
+                    if (path.indexOf('/detail/') != -1) {
+                        paths.push({ text: '详情' });
+                    }
+                    if (path.indexOf('/edit/') != -1) {
+                        paths.push({ text: '编辑' });
+                    }
+                })(); break;
+            }
+
+            amplify.publish('path.refresh', paths);
+        });
     });
     app.controller('ListCtrl', function ($scope, RegSvc) {
 
@@ -175,14 +125,6 @@
             $scope.main.reg = rep.data;
         });
     });
-    app.controller('PrintCtrl', function ($scope, RegSvc, $routeParams) {
-        $scope.main = {
-            reg: {}
-        };
-        RegSvc.getDetail($routeParams.id).then(function (rep) {
-            $scope.main.reg = rep.data;
-        });
-    });
     app.controller('FormCtrl', function ($scope, $http, $filter, AppConstant, RegSvc, $location, $routeParams) {
         $scope.main = {
             mode: 'add',
@@ -206,7 +148,8 @@
                 RegistrateCollege: '',
                 CurrentGrade: 'dayi',
                 EducationDegree: 'zhuanke',
-                Note: ''
+                Note: '',
+                Confirm: true
             }
             , colleges: {
                 choices: [],
@@ -285,4 +228,8 @@
 
 
     });
+
+
+
+
 </script>

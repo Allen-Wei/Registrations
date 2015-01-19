@@ -15,11 +15,13 @@ namespace Registrations.Controllers
     {
         RegistrationModel model = new RegistrationModel();
 
+        [Authorize(Roles = "sales")]
         public ActionResult Index()
         {
             return View();
         }
 
+        [Authorize(Roles = "sales")]
         public ActionResult Receipt(int id)
         {
             var reg = model.Registrations.FirstOrDefault(r => r.Id == id);
@@ -27,9 +29,19 @@ namespace Registrations.Controllers
             return View(reg);
         }
 
+        public ActionResult Apply()
+        {
+            return View();
+        }
+
+        public ActionResult ApplySuccess()
+        {
+            return View();
+        }
+
         public ActionResult Demo()
         {
-            model.CreateDatabase();
+            ViewBag.info = HttpContext.User.Identity.Name;
             return View();
         }
 

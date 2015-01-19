@@ -181,14 +181,19 @@
     <Compile Include="APIv1\CourseCategoryController.cs" />
     <Compile Include="APIv1\CourseController.cs" />
     <Compile Include="APIv1\RegistrationController.cs" />
-    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="APIv1\UserController.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\APIv2\APIv2AreaRegistration.cs" />
+    <Compile Include="Areas\APIv2\Controllers\RegController.cs" />
     <Compile Include="Controllers\EducationController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Library\RolesProvider.cs" />
+    <Compile Include="Library\Utils.cs" />
     <Compile Include="Models\RegistrationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -205,6 +210,7 @@
     <Content Include="Scripts\angular\services.js" />
     <Content Include="Styles\animate.css" />
     <Content Include="Styles\font-awesome.min.css" />
+    <Content Include="Areas\APIv2\Views\Web.config" />
     <None Include="Content\app.appcache" />
     <None Include="Vendors\amplify-vsdoc.js" />
     <Content Include="Styles\images\animated-overlay.gif" />
@@ -254,12 +260,19 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Education\Receipt.cshtml" />
     <Content Include="Views\Education\Demo.cshtml" />
+    <Content Include="Views\Partials\angular.cshtml" />
+    <Content Include="Views\Partials\jqueryui.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Partials\breadcrumb.cshtml" />
+    <Content Include="Views\Education\Apply.cshtml" />
+    <Content Include="Views\Education\ApplySuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\APIv2\Models\" />
+    <Folder Include="Areas\APIv2\Views\Shared\" />
     <Folder Include="Filters\" />
     <Folder Include="Images\" />
-    <Folder Include="Library\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

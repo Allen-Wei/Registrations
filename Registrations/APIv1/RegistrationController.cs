@@ -25,10 +25,14 @@ namespace Registrations.APIv1
 
         public Registration Get(int id)
         {
-            return model.Registrations.FirstOrDefault(r => r.Id == id);
+            var reg = model.Registrations.FirstOrDefault(r => r.Id == id);
+            if (reg == null) return null;
+            return reg;
         }
         public Registration Put(Registration registration)
         {
+            registration.GenerateDate = DateTime.Now;
+            registration.Confirm = true;
             model.Registrations.InsertOnSubmit(registration);
             model.SubmitChanges();
             return registration;
@@ -42,8 +46,8 @@ namespace Registrations.APIv1
             reg.StudentName = registration.StudentName;
             reg.Gender = registration.Gender;
             reg.Phone = registration.Phone;
+            reg.Phone2 = registration.Phone2;
             reg.Price = registration.Price;
-            reg.CourseType = registration.CourseType;
             reg.RegistrationAddress = registration.RegistrationAddress;
             reg.HomeAddress = registration.HomeAddress;
             reg.Payee = registration.Payee;

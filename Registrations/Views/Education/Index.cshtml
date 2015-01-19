@@ -5,8 +5,21 @@
 
 @section header{
     <style type="text/css">
-        .new-form { }
-        .new-form .col-xs-12 { margin-top: 10px; vertical-align: middle; }
+        .new-form {
+        }
+
+        .new-form .col-xs-12 {
+            margin-top: 10px;
+            vertical-align: middle;
+        }
+        /*for form.html, detai.html*/
+        .header-sub {
+            color: #aaa;
+        }
+
+        .header-sub:after {
+            /*content: ':';*/
+        }
     </style>
 }
 
@@ -83,10 +96,24 @@
                 });
                 return promise;
             }
-            ,remove: function(id) {
+            , remove: function (id) {
                 var promise = $http({
                     method: 'delete',
                     url: '/APIv1/Registration/' + id
+                });
+                return promise;
+            }
+            , loadCourseCategories: function () {
+                var promise = $http({
+                    method: 'get',
+                    url: '/APIv1/CourseCategory'
+                });
+                return promise;
+            }
+            , loadCourses: function (categoryName) {
+                var promise = $http({
+                    method: 'get',
+                    url: '/APIv1/Course?category=' + categoryName
                 });
                 return promise;
             }
@@ -114,17 +141,17 @@
                     $scope.main.total = parseInt(rep.headers('X-HeyHey-Total'));
                 });
             },
-            remove:function(index) {
+            remove: function (index) {
                 var reg = this.regs[index];
                 if (!reg) {
                     throw 'Cannot find ' + index;
                 }
 
-                RegSvc.remove(reg.Id).then(function(rep) {
+                RegSvc.remove(reg.Id).then(function (rep) {
                     if (rep.data) {
                         $scope.main.regs.splice(index, 1);
                     }
-                }, function(rep) {
+                }, function (rep) {
                     console.log('deleted fail.');
                 });
             }
@@ -150,9 +177,9 @@
     });
     app.controller('PrintCtrl', function ($scope, RegSvc, $routeParams) {
         $scope.main = {
-            reg:{}
+            reg: {}
         };
-        RegSvc.getDetail($routeParams.id).then(function(rep) {
+        RegSvc.getDetail($routeParams.id).then(function (rep) {
             $scope.main.reg = rep.data;
         });
     });
@@ -160,38 +187,63 @@
         $scope.main = {
             mode: 'add',
             reg: {
-                RegistrateDate: $filter('date')(new Date(), AppConstant.ngDateFormat),
                 StudentName: '',
                 Gender: 'true',
                 Phone: '',
-                Price: 0,
-                CourseType: '成考',
-                RegistrationAddress: '总部',
+                Phone2: '',
+                LiveAddress: '',
                 HomeAddress: '',
+
+                ReceiptNumber: '',
+                RegistrateDate: $filter('date')(new Date(), AppConstant.ngDateFormat),
+                Price: 0,
                 Payee: '',
-                CurrentGrade: '大一',
+
+                RegistrationAddress: 'zongbu',
+                CourseCategoryName: '',
+                CourseName: '',
                 CurrentCollege: '',
                 RegistrateCollege: '',
-                EducationDegree: '专科',
+                CurrentGrade: 'dayi',
+                EducationDegree: 'zhuanke',
                 Note: ''
             }
             , colleges: {
                 choices: [],
                 all: []
             }
+            , courseAssist: {
+                categories: [],
+                category: {},
+                courses: [],
+                course: {}
+            }
             , submit: function () {
+
+                this.reg.CourseCategoryName = this.courseAssist.category.Name;
+                this.reg.CourseName = this.courseAssist.course.Name;
+
                 if (this.mode == 'update') {
-                    RegSvc.update(this.reg).then(function() {
+                    RegSvc.update(this.reg).then(function () {
                         $location.path('/');
                     });
                 } else {
                     RegSvc.add(this.reg).then(function (rep) {
-                        $location.path('/print/' + rep.data.Id);
+                        $location.path('/detail/' + rep.data.Id);
                     });
 
                 }
             }
         };
+
+        //Course category change, load Course
+        $scope.$watch('main.courseAssist.category.Name', function (newVal, oldVal) {
+            if (newVal === undefined) { return; }
+            RegSvc.loadCourses(newVal).then(function (rep) {
+                $scope.main.courseAssist.courses = rep.data;
+                $scope.main.courseAssist.course = $scope.main.courseAssist.courses[0];
+            });
+        });
 
         (function () {
             if ($routeParams.id) {
@@ -201,12 +253,21 @@
             }
 
             if ($scope.main.mode == 'update') {
+                //update mode
+                //load registration data
                 RegSvc.getDetail($routeParams.id).then(function (rep) {
                     $scope.main.reg = rep.data;
                     $scope.main.reg.RegistrateDate = $filter('date')(rep.data.RegistrateDate, AppConstant.ngDateFormat);
                     $scope.main.reg.Gender = rep.data.Gender.toString();
                 });
             }
+
+            //load course category
+            RegSvc.loadCourseCategories().then(function (rep) {
+                $scope.main.courseAssist.categories = rep.data;
+                $scope.main.courseAssist.category = $scope.main.courseAssist.categories[0];
+            });
+
 
             //load all colleges
             RegSvc.loadColleges().then(function (rep) {

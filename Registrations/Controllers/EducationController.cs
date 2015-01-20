@@ -64,5 +64,18 @@ namespace Education.Controllers
             var dir = new DirectoryInfo(path);
             return dir.GetFiles().Select(f => String.Format("/Education/{0}/{1}", folderName, f.Name)).ToList();
         }
+
+        public string CreateDatabase()
+        {
+            if (model.DatabaseExists()) return "database is existed.";
+            model.CreateDatabase();
+            var lines = System.IO.File.ReadAllLines(Server.MapPath("~/Content/data.txt"));
+            lines.Where(line => !String.IsNullOrWhiteSpace(line)).ForEach(line =>
+            {
+                var result = model.ExecuteCommand(line);
+            });
+
+            return "";
+        }
     }
 }

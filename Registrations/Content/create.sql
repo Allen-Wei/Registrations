@@ -1,6 +1,6 @@
 ﻿/*
-	sqlmetal /code:E:\Education.cs /server:(localdb)\v11.0 /database:Education /views /functions /sprocs /context:EducationModel /pluralize /namespace:Education.Models
-
+sqlmetal /code:E:\Education.cs /server:(localdb)\v11.0 /database:Education /views /functions /sprocs /context:EducationModel /pluralize /namespace:Education.Models
+sqlmetal /code:E:\LINQ2SQL\Education.cs /server:ozosserver\ozos /user:sa /password:evoss /database:Education /views /functions /sprocs /context:EducationModel /pluralize /namespace:Education.Models
 		public EducationModel() :
             base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SqlConnection"].ConnectionString, mappingSource)
         {
@@ -11,6 +11,7 @@ drop table Colleges
 drop table Registrations
 drop table Courses
 drop table CourseCategories
+drop table Registrations
 
 */
 
@@ -53,6 +54,7 @@ HomeAddress varchar(500),								--户籍
 ReceiptNumber varchar(500) not null,					--票号
 RegistrateDate datetime not null default getdate(),		--报考日期
 Price money not null,									--费用
+Agent varchar(500) not null,							--代理人
 Payee varchar(500) not null,							--收款人
 
 RegistrationAddress varchar(500) not null,				--报考地址
@@ -89,102 +91,25 @@ Email varchar(200) unique null,
 Password varchar(500) not null
 )
 
---Initial data
---CourseCategories data
+
+
+
+
 insert into CourseCategories(Name, Description, Category) values('xljy', 'xuelijiaoyu', 'c1')
 insert into CourseCategories(Name, Description, Category) values('zgzpx', 'zigezhengpeixun', 'c2')
 insert into CourseCategories(Name, Description, Category) values('zxxfd', 'zhongxiaoxue', 'c2')
---Courses data
-go
+
 insert into Courses(Name, Description, CourseCategoryName) values('yanjiusheng', 'yanjiusheng', 'xljy')
 insert into Courses(Name, Description, CourseCategoryName) values('chengrengaokao', 'chengrengaokao', 'xljy')
 insert into Courses(Name, Description, CourseCategoryName) values('yuanchengjiaoyu', 'yuanchengjiaoyu', 'xljy')
 insert into Courses(Name, Description, CourseCategoryName) values('gaozhishengben', 'gaozhishengben', 'xljy')
-go
+
 insert into Courses(Name, Description, CourseCategoryName) values('jisuanjierji', 'jisuanjierji', 'zgzpx')
 insert into Courses(Name, Description, CourseCategoryName) values('kuaijicongyezgz', 'kuaijicongye', 'zgzpx')
 insert into Courses(Name, Description, CourseCategoryName) values('jiaoshizgz', 'jiaoshizigezheng', 'zgzpx')
-go
+
 insert into Courses(Name, Description, CourseCategoryName) values('jipinban', 'jipinban', 'zxxfd')
 insert into Courses(Name, Description, CourseCategoryName) values('jingpinban', 'jingpinban', 'zxxfd')
 insert into Courses(Name, Description, CourseCategoryName) values('teseban', 'teseban', 'zxxfd')
 insert into Courses(Name, Description, CourseCategoryName) values('hanshujiaban', 'hanshujia', 'zxxfd')
 insert into Courses(Name, Description, CourseCategoryName) values('zuoyefudaoban', 'zuoyefudaoban', 'zxxfd')
-
---Colleges data
-insert into Colleges(Gid, Name, CanRegistrate)
-values(NEWID(), 'nankaidaxue', 1)
-go
-insert into Colleges(Gid, Name, CanRegistrate)
-values(NEWID(), 'tianjindaxue', 1)
-go
-insert into Colleges(Gid, Name, CanRegistrate)
-values(NEWID(), 'waiguoyuxueyuan', 1)
-go
-insert into Colleges(Gid, Name, CanRegistrate)
-values(NEWID(), 'caijingdaxue', 1)
-go
-insert into Colleges(Gid, Name, CanRegistrate)
-values(NEWID(), 'zhongde', 0)
-go
-insert into Colleges(Gid, Name, CanRegistrate)
-values(NEWID(), 'dianzijishu', 0)
-
---User and roles
-insert into Roles(RoleName, ApplicationName) values('sales', 'alan')
-insert into UsersInRoles(UserId, RoleName, ApplicationName) values('sale1', 'sales', 'alan')
-insert into Users(Code, Email,Password) values('sale1', 'sale@qq.com', 'saleone')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-insert into CourseCategories(Name, Description, Category) values('xljy', '学历教育', 'c1');
-insert into CourseCategories(Name, Description, Category) values('zgzpx', '资格证培训', 'c2');
-insert into CourseCategories(Name, Description, Category) values('zxxfd', '中小学辅导', 'c3');
-go
-insert into Courses(Name, Description, CourseCategoryName) values('yanjiusheng','研究生', 'xljy')
-insert into Courses(Name, Description, CourseCategoryName) values('chengrengaokao','成人高考', 'xljy')
-insert into Courses(Name, Description, CourseCategoryName) values('zixuekaoshi','自学考试', 'xljy')
-insert into Courses(Name, Description, CourseCategoryName) values('yuanchengjiaoyu','远程教育', 'xljy')
-go
-insert into Courses(Name, Description, CourseCategoryName) values('jisuanjierji','计算机二级', 'zgzpx')
-insert into Courses(Name, Description, CourseCategoryName) values('huijicongye','会计从业资格证', 'zgzpx')
-insert into Courses(Name, Description, CourseCategoryName) values('jiaoshizigezheng','教师资格证', 'zgzpx')
-go
-insert into Courses(Name, Description, CourseCategoryName) values('jipinban','极品班', 'zxxfd')
-insert into Courses(Name, Description, CourseCategoryName) values('jingpinban','精品班', 'zxxfd')
-*/
-

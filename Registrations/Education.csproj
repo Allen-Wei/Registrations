@@ -203,6 +203,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\APIv2\Views\Web.config" />
+    <Content Include="Content\create.sql" />
+    <Content Include="Content\data.txt" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -216,6 +218,7 @@
     <Content Include="Styles\animate.css" />
     <Content Include="Styles\font-awesome.min.css" />
     <None Include="Content\app.appcache" />
+    <None Include="Properties\PublishProfiles\Local.pubxml" />
     <None Include="Vendors\amplify-vsdoc.js" />
     <Content Include="Styles\images\animated-overlay.gif" />
     <Content Include="Styles\images\ui-bg_diagonals-thick_18_b81900_40x40.png" />

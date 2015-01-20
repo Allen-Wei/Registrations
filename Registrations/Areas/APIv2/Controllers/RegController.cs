@@ -14,6 +14,7 @@ namespace Education.Areas.APIv2.Controllers
         {
             reg.KeyId = Guid.NewGuid();
             reg.GenerateDate = DateTime.Now;
+            reg.Agent = " ";
             reg.Payee = " ";
             reg.Price = 0;
             reg.ReceiptNumber = "";

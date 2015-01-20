@@ -204,7 +204,7 @@
   <ItemGroup>
     <Content Include="Areas\APIv2\Views\Web.config" />
     <Content Include="Content\create.sql" />
-    <Content Include="Content\data.txt" />
+    <Content Include="Content\data.sql" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />

@@ -6,14 +6,14 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.Security;
-using Registrations.Library;
-using Registrations.Models;
+using Education.Library;
+using Education.Models;
 
-namespace Registrations.APIv1
+namespace Education.APIv1
 {
     public class UserController : ApiController
     {
-        private RegistrationModel model = new RegistrationModel();
+        private EducationModel model = new EducationModel();
         public Utils.RichMessage GetLogIn(string code, string password)
         {
             var queryUser = model.Users.FirstOrDefault(u => u.Code == code && u.Password == password);

@@ -4,14 +4,14 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Registrations.Models;
+using Education.Models;
 
 
-namespace Registrations.APIv1
+namespace Education.APIv1
 {
     public class CourseController : ApiController
     {
-        private RegistrationModel model = new RegistrationModel();
+        private EducationModel model = new EducationModel();
         public IEnumerable<Course> GetCourses(string category)
         {
             return model.Courses.Where(c => c.CourseCategoryName == category);

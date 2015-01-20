@@ -6,14 +6,14 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Microsoft.Ajax.Utilities;
-using Registrations.Models;
+using Education.Models;
 using WebGrease.Css.Extensions;
 
-namespace Registrations.Controllers
+namespace Education.Controllers
 {
     public class EducationController : Controller
     {
-        RegistrationModel model = new RegistrationModel();
+        private EducationModel model = new EducationModel();
 
         [Authorize(Roles = "sales")]
         public ActionResult Index()
@@ -62,7 +62,7 @@ namespace Registrations.Controllers
         {
             var path = Server.MapPath(String.Format("~/{0}", folderName));
             var dir = new DirectoryInfo(path);
-            return dir.GetFiles().Select(f => String.Format("/Registrations/{0}/{1}", folderName, f.Name)).ToList();
+            return dir.GetFiles().Select(f => String.Format("/Education/{0}/{1}", folderName, f.Name)).ToList();
         }
     }
 }

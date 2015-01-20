@@ -4,13 +4,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using Registrations.Models;
+using Education.Models;
 
-namespace Registrations.APIv1
+namespace Education.APIv1
 {
     public class CollegeController : ApiController
     {
-        RegistrationModel model = new RegistrationModel();
+        private EducationModel model = new EducationModel();
         public IEnumerable<College> Get()
         {
             return model.Colleges.Select(c => c);

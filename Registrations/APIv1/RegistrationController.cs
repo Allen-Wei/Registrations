@@ -6,15 +6,15 @@ using System.Net.Http;
 using System.Web;
 using System.Web.Http;
 using System.Web.UI;
-using Registrations.Models;
+using Education.Models;
 
-namespace Registrations.APIv1
+namespace Education.APIv1
 {
     [Authorize(Roles = "sales")]
 
     public class RegistrationController : ApiController
     {
-        private RegistrationModel model = new RegistrationModel();
+        private EducationModel model = new EducationModel();
 
         public IEnumerable<Registration> Get(int take, int skip)
         {

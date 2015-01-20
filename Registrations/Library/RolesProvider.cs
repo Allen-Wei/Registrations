@@ -4,13 +4,13 @@ using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
-using Registrations.Models;
+using Education.Models;
 
-namespace Registrations.Library
+namespace Education.Library
 {
     public class RolesProvider : RoleProvider
     {
-        private RegistrationModel db = new RegistrationModel();
+        private EducationModel db = new EducationModel();
 
         public RolesProvider()
         {

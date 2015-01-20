@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Registrations.Models;
+using Education.Models;
 
-namespace Registrations.Areas.APIv2.Controllers
+namespace Education.Areas.APIv2.Controllers
 {
     public class RegController : Controller
     {
-private    RegistrationModel model = new RegistrationModel();
+        private EducationModel model = new EducationModel();
         public JsonResult Apply(Registration reg)
         {
             reg.KeyId = Guid.NewGuid();

@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace Registrations.Areas.APIv2
+namespace Education.Areas.APIv2
 {
     public class APIv2AreaRegistration : AreaRegistration
     {

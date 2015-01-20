@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Registrations</RootNamespace>
-    <AssemblyName>Registrations</AssemblyName>
+    <RootNamespace>Education</RootNamespace>
+    <AssemblyName>Education</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -185,8 +185,12 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Areas\APIv2\APIv2AreaRegistration.cs" />
-    <Compile Include="Areas\APIv2\Controllers\RegController.cs" />
+    <Compile Include="Areas\APIv2\APIv2AreaRegistration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Areas\APIv2\Controllers\RegController.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Controllers\EducationController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -194,10 +198,11 @@
     </Compile>
     <Compile Include="Library\RolesProvider.cs" />
     <Compile Include="Library\Utils.cs" />
-    <Compile Include="Models\RegistrationModel.cs" />
+    <Compile Include="Models\Education.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\APIv2\Views\Web.config" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -210,7 +215,6 @@
     <Content Include="Scripts\angular\services.js" />
     <Content Include="Styles\animate.css" />
     <Content Include="Styles\font-awesome.min.css" />
-    <Content Include="Areas\APIv2\Views\Web.config" />
     <None Include="Content\app.appcache" />
     <None Include="Vendors\amplify-vsdoc.js" />
     <Content Include="Styles\images\animated-overlay.gif" />

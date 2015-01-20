@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Registrations.Library
+namespace Education.Library
 {
     public class Utils
     {

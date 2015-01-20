@@ -266,7 +266,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Education\Receipt.cshtml" />
-    <Content Include="Views\Education\Demo.cshtml" />
     <Content Include="Views\Partials\angular.cshtml" />
     <Content Include="Views\Partials\jqueryui.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />

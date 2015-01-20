@@ -1,4 +1,4 @@
-﻿
+﻿--
 insert into Colleges(Gid, Name, CanRegistrate) values(NEWID(), 'nankaidaxue', 1)
 insert into Colleges(Gid, Name, CanRegistrate) values(NEWID(), 'tianjindaxue', 1)
 insert into Colleges(Gid, Name, CanRegistrate) values(NEWID(), 'waiguoyuxueyuan', 1)

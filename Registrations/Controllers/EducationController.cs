@@ -39,12 +39,6 @@ namespace Education.Controllers
             return View();
         }
 
-        public ActionResult Demo()
-        {
-            ViewBag.info = HttpContext.User.Identity.Name;
-            return View();
-        }
-
         public string GenerateManifest()
         {
             StringBuilder manifest = new StringBuilder();
@@ -69,13 +63,13 @@ namespace Education.Controllers
         {
             if (model.DatabaseExists()) return "database is existed.";
             model.CreateDatabase();
-            var lines = System.IO.File.ReadAllLines(Server.MapPath("~/Content/data.txt"));
-            lines.Where(line => !String.IsNullOrWhiteSpace(line)).ForEach(line =>
+            var lines = System.IO.File.ReadAllLines(Server.MapPath("~/Content/data.sql"));
+            lines.Where(line => !String.IsNullOrWhiteSpace(line) && !line.StartsWith("--")).ForEach(line =>
             {
                 var result = model.ExecuteCommand(line);
             });
 
-            return "";
+            return "success";
         }
     }
 }

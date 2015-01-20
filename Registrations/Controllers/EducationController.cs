@@ -5,9 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using Microsoft.Ajax.Utilities;
 using Education.Models;
-using WebGrease.Css.Extensions;
 
 namespace Education.Controllers
 {
@@ -64,9 +62,10 @@ namespace Education.Controllers
             if (model.DatabaseExists()) return "database is existed.";
             model.CreateDatabase();
             var lines = System.IO.File.ReadAllLines(Server.MapPath("~/Content/data.sql"));
-            lines.Where(line => !String.IsNullOrWhiteSpace(line) && !line.StartsWith("--")).ForEach(line =>
+            lines.Where(line => !String.IsNullOrWhiteSpace(line) && !line.StartsWith("--")).All(line =>
             {
                 var result = model.ExecuteCommand(line);
+                return true;
             });
 
             return "success";

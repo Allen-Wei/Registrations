@@ -68,6 +68,8 @@ Note varchar(max),										--备注
 Confirm bit not null default 0							--Confirmed
 )
 go
+
+--#region authen
 CREATE TABLE Roles
 (
   RoleName varchar(200) NOT NULL,
@@ -91,6 +93,7 @@ Email varchar(200) unique null,
 Password varchar(500) not null
 )
 
+--#ednregion
 
 
 
@@ -113,3 +116,35 @@ insert into Courses(Name, Description, CourseCategoryName) values('jingpinban', 
 insert into Courses(Name, Description, CourseCategoryName) values('teseban', 'teseban', 'zxxfd')
 insert into Courses(Name, Description, CourseCategoryName) values('hanshujiaban', 'hanshujia', 'zxxfd')
 insert into Courses(Name, Description, CourseCategoryName) values('zuoyefudaoban', 'zuoyefudaoban', 'zxxfd')
+
+
+
+/*
+RegAddr(Id, Name)
+
+CourseCategories(Id, Name, Description, Category)
+Courses(Id, Name, Description, CourseCategoryName)
+
+CollegeGroup(Id, Name, Description)
+Colleges(Id, Name, GroupId, Description)
+
+
+KeyValueGroup(Id, Name, Category, Description): RegistrationAddress, Course(学历教育, 资格证培训, 中小学辅导), College(成考, 自考)
+KeyValueMatches(GroupId, ValueId, Description)
+KeyValues(Id, Name, Value, Description)
+
+
+1. Personal Information: 报名时间 姓名 性别 民族 身份证 电话 备用电话 户籍 住址 => RegUser
+2. Course Category: 学历教育/资格证培训/中小学辅导 => Course: ...		=> ...Trains
+3. Id, Gid, GenerateDate, ReceiptNumber, Agent, Payee, Place, Confirmed, Note	=> Registraion
+
+
+RegUsers(Gid, ...)
+
+EducationTrains(Gid, Course, RegCollege, RegMajor, EduType, CurrentCollege, CurrentGrade) 学历教育
+CertificationTrains(Gid, Course, CurrentCollege, CurrentGrade, EduType) 资格证培训
+SchoolTrains(Gid, Course, RegStage) 中小学辅导
+	SchoolSubjects(Id, TrainId, Name, Hours, PricePerSubject)
+
+Registraion(Id, Gid, GenerateDate, ReceiptNumber, Agent, Payee, Place, Confirmed, Note, RegUserId, RegTrainName, RegTrainId)
+*/

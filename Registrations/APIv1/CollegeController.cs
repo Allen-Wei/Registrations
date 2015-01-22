@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using Education.Models;
 
@@ -13,6 +14,7 @@ namespace Education.APIv1
         private EducationModel model = new EducationModel();
         public IEnumerable<College> Get()
         {
+            HttpContext.Current.Response.AddHeader("Access-Control-Allow-Origin", "*");
             return model.Colleges.Select(c => c);
         }
 

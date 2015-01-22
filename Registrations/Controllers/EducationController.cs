@@ -61,13 +61,18 @@ namespace Education.Controllers
         {
             if (model.DatabaseExists()) return "database is existed.";
             model.CreateDatabase();
+            return "success";
+        }
+
+      
+        public string InitialData()
+        {
             var lines = System.IO.File.ReadAllLines(Server.MapPath("~/Content/data.sql"));
             lines.Where(line => !String.IsNullOrWhiteSpace(line) && !line.StartsWith("--")).All(line =>
             {
                 var result = model.ExecuteCommand(line);
                 return true;
             });
-
             return "success";
         }
     }

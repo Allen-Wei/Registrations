@@ -20,9 +20,9 @@ namespace Education.Models
 	using System.Linq.Expressions;
 	using System.ComponentModel;
 	using System;
-	
-	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="Education")]
+
+
+    [global::System.Data.Linq.Mapping.DatabaseAttribute(Name = "Education")]
 	public partial class EducationModel : System.Data.Linq.DataContext
 	{
 		
